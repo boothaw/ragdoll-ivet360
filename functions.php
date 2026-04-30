@@ -263,6 +263,7 @@ function three_callouts($atts) {
 }
 add_shortcode('three_callouts','three_callouts');
 
+
 function homepage_services() {
 	ob_start();
 	?>

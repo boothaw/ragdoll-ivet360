@@ -41,7 +41,6 @@ TABLE OF CONTENTS:
   --dark: #046077;
   --medium: #117d98;
   --lite: #ecfbfe;
-  /* --lite-hover: #ECFBFE33; */
   --black: #0d0d0d;
   --primaryFont: "area-normal", sans-serif;
   --primarySecondary: "area-normal", sans-serif;
@@ -2052,6 +2051,13 @@ body {
     }
     > ul > li {
       margin-left: 1.25em;
+    }
+    > h1,
+    > h2,
+    > h3,
+    > h4,
+    > h5 {
+      text-wrap: balance;
     }
   }
 }
