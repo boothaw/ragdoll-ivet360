@@ -2002,11 +2002,7 @@ body {
 
 .page-template-thank-you,
 .page-template-default {
-  .entry-content > .wp-block-columns.bg-lite {
-    width: 100%;
-    max-width: none;
-  }
-  .entry-content > .wp-block-columns {
+  .entry-content > .wp-block-columns:not(.bg-lite) {
     padding: 40px 0;
     width: 90%;
     max-width: 1200px;
@@ -2030,11 +2026,12 @@ body {
       align-self: center;
     }
   }
+
   .entry-content > .wp-block-columns.bg-lite {
     background-color: var(--lite);
-    padding: 0px 0;
-    max-width: none;
     width: 100%;
+    max-width: none;
+    padding: 80px 0;
   }
   .entry-content > .wp-block-columns.inner-wrapper.lite-card {
     background-color: var(--lite);
@@ -3627,12 +3624,12 @@ body:not(.home) .copyright-text {
   }
   .testimonial-cards-ctn {
     flex-wrap: wrap;
-    width: 100% !important;
-    margin: 0;
+    width: 90% !important;
+    margin: 0 auto;
 
     .testimonial-card {
-      width: 90%;
-      margin: 0 auto;
+      width: 100%;
+      margin: 0;
     }
   }
 }
@@ -4576,8 +4573,3 @@ h4.wp-block-heading {
 .thumbnail-image {
   opacity: 0;
 }
-
-/* .testimonial-card,
-.card-item,
-.footer .lite-card,
-.staff-team-container-inner, */

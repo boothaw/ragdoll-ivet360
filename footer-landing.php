@@ -1,8 +1,4 @@
 </div>
-<footer id="footer" class="footer">
-    <div class="inner-wrapper">
-    </div>
-</footer>
 <div id="copyright" class="copyright-bar">
     <div class="inner-wrapper copyright-inner">
         <p class="copyright-text">

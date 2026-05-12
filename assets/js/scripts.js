@@ -26,9 +26,23 @@ const scrollFadeSelectors = [
   ".page-template-services-page .entry-content > .wp-block-columns:not(.full-width-col) .wp-block-column:first-of-type",
 ];
 
+// On basic-post and basic-page templates, skip fade-ins for anything inside .entry-content.
+const skipEntryContentFades =
+  document.body.classList.contains("post-template-basic-post") ||
+  document.body.classList.contains("page-template-basic");
+
+function getScrollFadeEls(selector) {
+  let els = Array.from(document.querySelectorAll(selector));
+  if (skipEntryContentFades) {
+    els = els.filter((el) => !el.closest(".entry-content"));
+  }
+  return els;
+}
+
 // Hide them immediately to prevent flash before ScrollTrigger picks them up.
 if (typeof gsap !== "undefined") {
-  gsap.set(scrollFadeSelectors.join(", "), { opacity: 0, y: 40 });
+  const elsToHide = scrollFadeSelectors.flatMap(getScrollFadeEls);
+  if (elsToHide.length) gsap.set(elsToHide, { opacity: 0, y: 40 });
 }
 
 // ─── HAMBURGER MENU ──────────────────────────────────────────────────────────
@@ -170,20 +184,20 @@ window.onload = function () {
       ];
 
       scrollFadeSelectors.forEach((selector) => {
-        const els = gsap.utils.toArray(selector);
+        const els = getScrollFadeEls(selector);
         if (!els.length) return;
 
         if (staggeredSelectors.includes(selector)) {
-          gsap.to(els, {
-            opacity: 1,
-            y: 0,
-            ease: "power1.inOut",
-            duration: 0.3,
-            stagger: 0.1,
-            scrollTrigger: {
-              trigger: els[0],
-              start: "top 95%",
-            },
+          ScrollTrigger.batch(els, {
+            start: "top 95%",
+            onEnter: (batch) =>
+              gsap.to(batch, {
+                opacity: 1,
+                y: 0,
+                ease: "power1.in",
+                duration: 0.2,
+                stagger: 0.1,
+              }),
           });
         } else {
           els.forEach((el) => {

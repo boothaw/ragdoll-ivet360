@@ -352,11 +352,11 @@ if (
         </div>
         <div class="quarter lite-card ">
             <h3>Online Pharmacy</h3>
-            <a class="ghost-button" href="#">Order Now</a>
+            <a class="ghost-button" href="[PHARMACY LINK]">Order Now</a>
         </div>
         <div class="quarter lite-card ">
             <h3>New Client Forms</h3>
-            <a class="ghost-button" href="/new-cleint-forms/">View Forms</a>
+            <a class="ghost-button" href="/client-forms/">View Forms</a>
         </div>
     </div>
     <span class="visit-cta">Visit [Hospital Name] at <a href="/contact/">[Hospital Address]</a>.</span>
