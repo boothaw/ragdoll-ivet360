@@ -892,14 +892,14 @@ body {
   z-index: 1;
   border-radius: 12px;
   background-color: var(--medium);
-  height: 0;
+  max-height: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   transition:
-    height 0.3s ease-in,
-    opacity 0.3s ease-in,
-    color 0.3s ease-in;
+    max-height 0.4s ease-in-out,
+    opacity 0.4s ease-in-out,
+    color 0.4s ease-in-out;
 }
 
 #menu .sub-menu > li > a {
@@ -926,7 +926,7 @@ body {
 }
 #menu ul > li:hover > .sub-menu {
   padding: 10px 0;
-  height: fit-content;
+  max-height: 500px;
   width: fit-content;
   z-index: 5;
 

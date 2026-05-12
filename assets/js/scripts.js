@@ -1,12 +1,15 @@
 $ = jQuery;
 
 // ─── GSAP: hide animated elements immediately to prevent flash ───────────────
-if (typeof gsap !== "undefined") {
-  gsap.set(
-    ".entry-title h1, .entry-title p, .entry-title .buttons-ctn, .thumbnail-image",
-    { opacity: 0, y: 20 },
-  );
-}
+//
+// IS THIS NEEDED???
+//
+// if (typeof gsap !== "undefined") {
+//   gsap.set(
+//     ".entry-title h1, .entry-title p, .entry-title .buttons-ctn, .thumbnail-image",
+//     { opacity: 0, y: 20 },
+//   );
+// }
 
 // ─── HAMBURGER MENU ──────────────────────────────────────────────────────────
 function hamburgerMenu() {
@@ -123,7 +126,12 @@ window.onload = function () {
 
     const phase2 = [h1, excerpt, buttons].filter(Boolean);
     if (phase2.length) {
-      tl2.fromTo(phase2, { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 0);
+      tl2.fromTo(
+        phase2,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, stagger: 0.1 },
+        0,
+      );
     }
     const phase3 = [thumb].filter(Boolean);
     if (phase3.length) {
