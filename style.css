@@ -2015,7 +2015,7 @@ body {
 
     .wp-block-column:first-of-type {
       background-color: var(--lite);
-      padding: 80px 0;
+      padding: 40px;
       border-radius: 32px;
 
       & p {
@@ -2128,6 +2128,10 @@ body {
   .entry-content > .wp-block-columns.bg-lite {
     width: 100%;
     max-width: none;
+
+    .wp-block-column {
+      padding: 0;
+    }
   }
   .entry-content {
     width: 100%;
@@ -2624,7 +2628,8 @@ body {
     background-color: var(--lite);
     border-radius: 32px;
     padding: 0px;
-    margin: auto;
+    width: 100%;
+    margin: 0;
     overflow: hidden;
 
     .gform_heading {
@@ -4561,7 +4566,6 @@ h4.wp-block-heading {
 }
 
 /* GSAP animation initial states — prevents flash of content before JS loads */
-/* .nav-header-inner > *, */
 .nav-header-inner,
 .entry-title h1,
 .entry-title p,
@@ -4569,22 +4573,3 @@ h4.wp-block-heading {
 .thumbnail-image {
   opacity: 0;
 }
-
-/* .card-item,
-.entry-content > .wp-block-heading,
-.entry-content > p,
-.entry-content > ul,
-.image-content-block .image-section,
-.image-content-block .content-section > * (individually/foreaach),
-.full-width-col h2,
-.full-width-col h2,
-.testimonial-card,
-.wp-block-buttons,
-.accordion-block,
-.footer .lite-card,
-.visit-cta,
-.wp-block-columns.lite-card,
-.gform_wrapper,
-.dvm-team-container-inner,
-.staff-team-container-inner,
-.staff-container > h2, */

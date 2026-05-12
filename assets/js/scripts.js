@@ -1,15 +1,33 @@
 $ = jQuery;
 
-// ─── GSAP: hide animated elements immediately to prevent flash ───────────────
-//
-// IS THIS NEEDED???
-//
-// if (typeof gsap !== "undefined") {
-//   gsap.set(
-//     ".entry-title h1, .entry-title p, .entry-title .buttons-ctn, .thumbnail-image",
-//     { opacity: 0, y: 20 },
-//   );
-// }
+// ─── GSAP: scroll-triggered fade-in selectors ────────────────────────────────
+const scrollFadeSelectors = [
+  ".card-item",
+  ".entry-content > .wp-block-heading",
+  ".entry-content > p",
+  ".entry-content > ul",
+  ".image-content-block .image-section",
+  ".image-content-block .content-section > *",
+  ".full-width-col h2",
+  ".testimonial-card",
+  ".wp-block-buttons",
+  ".accordion-block",
+  ".footer .lite-card",
+  ".visit-cta",
+  ".wp-block-columns.lite-card",
+  ".gform_wrapper",
+  ".dvm-team-container-inner",
+  ".staff-team-container-inner",
+  ".staff-container > h2",
+  ".wp-block-columns.inner-wrapper.lite-card .wp-block-column > *",
+  ".contact-sidebar .lite-card",
+  ".contact-sidebar iframe",
+];
+
+// Hide them immediately to prevent flash before ScrollTrigger picks them up.
+if (typeof gsap !== "undefined") {
+  gsap.set(scrollFadeSelectors.join(", "), { opacity: 0, y: 40 });
+}
 
 // ─── HAMBURGER MENU ──────────────────────────────────────────────────────────
 function hamburgerMenu() {
@@ -113,7 +131,7 @@ window.onload = function () {
       defaults: { ease: "power1.out", duration: 0.3 },
     });
     const tl2 = gsap.timeline({
-      defaults: { ease: "power1.inOut", duration: 0.5 },
+      defaults: { ease: "power1.inOut", duration: 0.3 },
     });
     const tl3 = gsap.timeline({
       defaults: { ease: "power3.inOut", duration: 0.7 },
@@ -136,6 +154,26 @@ window.onload = function () {
     const phase3 = [thumb].filter(Boolean);
     if (phase3.length) {
       tl3.fromTo(phase3, { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 0);
+    }
+
+    // ─── Scroll-triggered fade-ins ─────────────────────────────────────────
+    if (typeof ScrollTrigger !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+
+      scrollFadeSelectors.forEach((selector) => {
+        gsap.utils.toArray(selector).forEach((el) => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            ease: "power1.inOut",
+            duration: 0.3,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 95%",
+            },
+          });
+        });
+      });
     }
   }
 
