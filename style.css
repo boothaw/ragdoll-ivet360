@@ -3163,13 +3163,16 @@ body {
 
     .quarter {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     & h3 {
       text-align: center;
       font-size: 28px;
     }
     .ghost-button {
-      margin: auto;
+      margin: 0 auto;
     }
   }
   .quarter.card {
@@ -4573,3 +4576,8 @@ h4.wp-block-heading {
 .thumbnail-image {
   opacity: 0;
 }
+
+/* .testimonial-card,
+.card-item,
+.footer .lite-card,
+.staff-team-container-inner, */

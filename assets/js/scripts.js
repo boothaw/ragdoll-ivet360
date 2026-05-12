@@ -22,6 +22,8 @@ const scrollFadeSelectors = [
   ".wp-block-columns.inner-wrapper.lite-card .wp-block-column > *",
   ".contact-sidebar .lite-card",
   ".contact-sidebar iframe",
+  ".service-item",
+  ".page-template-services-page .entry-content > .wp-block-columns:not(.full-width-col) .wp-block-column:first-of-type",
 ];
 
 // Hide them immediately to prevent flash before ScrollTrigger picks them up.
@@ -160,19 +162,43 @@ window.onload = function () {
     if (typeof ScrollTrigger !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
 
+      const staggeredSelectors = [
+        ".testimonial-card",
+        ".card-item",
+        ".footer .lite-card",
+        ".staff-team-container-inner",
+      ];
+
       scrollFadeSelectors.forEach((selector) => {
-        gsap.utils.toArray(selector).forEach((el) => {
-          gsap.to(el, {
+        const els = gsap.utils.toArray(selector);
+        if (!els.length) return;
+
+        if (staggeredSelectors.includes(selector)) {
+          gsap.to(els, {
             opacity: 1,
             y: 0,
             ease: "power1.inOut",
             duration: 0.3,
+            stagger: 0.1,
             scrollTrigger: {
-              trigger: el,
+              trigger: els[0],
               start: "top 95%",
             },
           });
-        });
+        } else {
+          els.forEach((el) => {
+            gsap.to(el, {
+              opacity: 1,
+              y: 0,
+              ease: "power1.inOut",
+              duration: 0.3,
+              scrollTrigger: {
+                trigger: el,
+                start: "top 95%",
+              },
+            });
+          });
+        }
       });
     }
   }
