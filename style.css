@@ -332,7 +332,7 @@ h1 {
 }
 
 h2 {
-  font-size: 42px;
+  font-size: 40px;
   font-weight: bold;
   margin-bottom: 1em;
   line-height: 1.25em;
@@ -340,7 +340,7 @@ h2 {
 }
 
 h3 {
-  font-size: 36px;
+  font-size: 28px;
   font-weight: bold;
   margin-bottom: 1em;
   line-height: 1.25em;
@@ -348,13 +348,13 @@ h3 {
 }
 
 h4 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
   margin-bottom: 1.25em;
   color: var(--dark);
 }
 body {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.5em;
   color: var(--black);
 }
@@ -405,6 +405,7 @@ body:not(.home) #content ol {
 
 body:not(.home) #content ul {
   list-style: disc;
+  width: 100%;
 }
 
 .entry-content ul {
@@ -473,7 +474,7 @@ body:not(.home) #content ul {
 .gform_next_button,
 .gform_previous_button,
 .gform_button {
-  font-size: 14px;
+  font-size: 12px;
   padding: 20px;
   text-transform: capitalize;
   font-weight: 600;
@@ -542,17 +543,21 @@ body:not(.home) #content ul {
 .dark-button {
   background-color: var(--dark);
   border: 2px solid var(--dark);
-  color: #fff;
+  color: var(--lite);
 }
 .dark-button:hover {
   background-color: var(--medium);
   border-color: var(--medium);
-  color: #fff;
+  color: var(--lite);
 }
 .ghost-button {
   background-color: transparent;
-  border: 2px solid var(--medium) !important;
+  border: 1px solid var(--medium) !important;
   color: var(--dark) !important;
+
+  &:has(> i) {
+    gap: 12px;
+  }
 }
 .ghost-button:hover {
   background-color: var(--medium) !important;
@@ -762,6 +767,7 @@ body {
   margin: 0 auto;
   display: flex;
   height: 100%;
+  z-index: 5;
 }
 
 .logo-container {
@@ -812,18 +818,17 @@ body {
   height: 100%;
   display: flex;
   align-items: center;
-  /* overflow-x: hidden; */
   margin-right: 0px;
 }
 
 #menu #main-menu {
   display: flex;
   height: 100%;
+  gap: 20px;
 }
 
 #menu #main-menu > li {
   height: 100%;
-  margin-right: 20px;
   display: flex;
   align-items: center;
   position: relative;
@@ -851,9 +856,10 @@ body {
   text-transform: uppercase;
   font-weight: 600;
   color: var(--dark);
-  font-size: 14px;
   display: flex;
   align-items: center;
+  letter-spacing: 0.04em;
+  font-size: 12px;
 
   & i {
     color: var(--dark);
@@ -861,47 +867,53 @@ body {
 }
 
 #menu .sub-menu > li {
-  /* background-color: var(--medium); */
   position: relative;
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s ease;
+  height: 0;
+  opacity: 0;
 
   & > a {
-    overflow: hidden;
     padding: 0;
     color: #fff;
     border-radius: 12px;
     padding: 12px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition:
+      height 0.3s ease-in,
+      opacity 0.3s ease-in,
+      color 0.3s ease-in;
   }
 }
 
 #menu .sub-menu {
+  overflow: hidden;
   position: absolute;
   top: 100px;
   left: 0;
   z-index: 1;
   border-radius: 12px;
   background-color: var(--medium);
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s ease;
-  overflow: hidden;
+  height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition:
+    height 0.3s ease-in,
+    opacity 0.3s ease-in,
+    color 0.3s ease-in;
 }
 
 #menu .sub-menu > li > a {
   height: 100%;
   font-size: 14px;
   padding: 0;
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-weight: 600;
   color: var(--medium);
   display: flex;
   align-items: center;
   white-space: nowrap;
-  transition: all ease-in 0.3s;
+  width: 100%;
+  transition: background-color 0.3s ease-in;
 }
 
 #menu #main-menu > li:hover {
@@ -913,18 +925,24 @@ body {
   }
 }
 #menu ul > li:hover > .sub-menu {
-  grid-template-rows: 1fr;
   padding: 10px 0;
+  height: fit-content;
+  width: fit-content;
+  z-index: 5;
 
   & > li {
     display: flex;
     padding: 0 6px;
+    height: 100%;
+    opacity: 1;
   }
   & > li > a {
     padding: 6px 12px;
     color: #fff;
     width: 100%;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12px;
   }
   & > li:hover a {
     background-color: var(--dark);
@@ -1749,6 +1767,9 @@ body {
       margin-bottom: 0;
     }
   }
+  .buttons-ctn {
+    justify-content: center;
+  }
 }
 .inner-header.has-thumbnail {
   /* flex-wrap: wrap; */
@@ -1994,7 +2015,7 @@ body {
 
     .wp-block-column:first-of-type {
       background-color: var(--lite);
-      padding: 40px;
+      padding: 80px 0;
       border-radius: 32px;
 
       & p {
@@ -2017,13 +2038,16 @@ body {
   }
   .entry-content > .wp-block-columns.inner-wrapper.lite-card {
     background-color: var(--lite);
-    padding: 0px 0;
+    /* padding: 0px 0; */
+    padding: 80px;
 
     .wp-block-column:first-of-type {
-      padding: 40px;
+      /* padding: 40px; */
+      padding: 0px;
     }
     .wp-block-column:last-of-type {
-      padding: 40px;
+      /* padding: 40px; */
+      padding: 0px;
     }
   }
 }
@@ -2045,7 +2069,7 @@ body {
     > .gform_wrapper,
     > strong {
       width: 90%;
-      max-width: 800px;
+      max-width: 950px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -2066,7 +2090,10 @@ body {
 .post-template-basic-post {
   .entry-content.lite-card {
     margin-top: 80px;
-    color: var(--dark);
+    color: var(--black);
+  }
+  .image-content-block.services-cta {
+    padding-bottom: 0;
   }
 }
 
@@ -2116,7 +2143,7 @@ body {
     > .gform_wrapper,
     > strong {
       width: 90%;
-      max-width: 800px;
+      max-width: 950px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -2282,7 +2309,7 @@ body {
     }
     & p {
       text-transform: uppercase;
-      font-size: 18px;
+      font-size: 12px;
       text-align: center;
       margin-bottom: 0;
     }
@@ -2456,7 +2483,7 @@ body {
     & > h2,
     & > h3,
     & > p {
-      max-width: 800px;
+      max-width: 950px;
       width: 90%;
       margin-left: auto;
       margin-right: auto;
@@ -2523,6 +2550,10 @@ body {
       background-color: var(--lite);
       padding: 40px;
       border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       & p {
         text-align: center;
@@ -3024,6 +3055,16 @@ body {
   padding: 80px 60px;
 }
 
+#gform_confirmation_message_1 {
+  font-size: 28px !important;
+  color: var(--dark) !important;
+  padding: 20px 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 40px auto;
+}
+
 .footer {
   width: 100vw;
   display: flex;
@@ -3373,10 +3414,10 @@ body {
 
 .copyright-text,
 .copyright-text a {
-  font-size: 16px;
-  /* text-transform: capitalize; */
+  font-size: 10px;
   color: var(--dark);
   margin: 0 auto;
+  letter-spacing: 0.04em;
 }
 
 body:not(.home) .copyright-text {
@@ -3422,10 +3463,26 @@ body:not(.home) .copyright-text {
   background-position: center;
   background-size: cover;
   background-image: url(/wp-content/uploads/2025/10/woman-reviewing-canine-health-results.png);
+
+  .testimonial-card-content {
+    gap: 24px;
+
+    & div > p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.page-id-39 .testimonial-section.bg-img {
+  background-image: url(/wp-content/uploads/2025/10/young-girl-comforting-golden-retriever.png);
+}
+
+.page-id-781 .testimonial-section.bg-img {
+  background-image: url(/wp-content/uploads/2026/04/young-woman-on-phone-with-dog.png);
 }
 
 .testimonial-section.bg-img {
-  padding: 100px 0;
+  padding: 140px 0;
 
   .testimonial-inner-ctn {
     display: flex;
@@ -3437,6 +3494,7 @@ body:not(.home) .copyright-text {
 
     & p {
       text-align: center;
+      font-size: 24px;
     }
 
     .testimonial-title {
@@ -3491,6 +3549,12 @@ body:not(.home) .copyright-text {
 
   & p {
     text-align: left;
+    color: var(--dark);
+
+    & strong {
+      font-weight: bold;
+    }
+
     & a {
       color: var(--dark);
     }
@@ -3557,6 +3621,11 @@ body:not(.home) .copyright-text {
     flex-wrap: wrap;
     width: 100% !important;
     margin: 0;
+
+    .testimonial-card {
+      width: 90%;
+      margin: 0 auto;
+    }
   }
 }
 
@@ -4492,9 +4561,30 @@ h4.wp-block-heading {
 }
 
 /* GSAP animation initial states — prevents flash of content before JS loads */
+/* .nav-header-inner > *, */
+.nav-header-inner,
 .entry-title h1,
 .entry-title p,
 .entry-title .buttons-ctn,
 .thumbnail-image {
   opacity: 0;
 }
+
+/* .card-item,
+.entry-content > .wp-block-heading,
+.entry-content > p,
+.entry-content > ul,
+.image-content-block .image-section,
+.image-content-block .content-section > * (individually/foreaach),
+.full-width-col h2,
+.full-width-col h2,
+.testimonial-card,
+.wp-block-buttons,
+.accordion-block,
+.footer .lite-card,
+.visit-cta,
+.wp-block-columns.lite-card,
+.gform_wrapper,
+.dvm-team-container-inner,
+.staff-team-container-inner,
+.staff-container > h2, */

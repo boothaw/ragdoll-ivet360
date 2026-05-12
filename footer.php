@@ -339,7 +339,7 @@ if (
         </div>
     </div>
     <?php } ?>
-    <?php echo do_shortcode('[gravityform id="1"]'); ?>
+    <?php echo do_shortcode('[gravityform id="1" ajax="true"]'); ?>
     <div class="inner-wrapper footer-cards-ctn">
         <div class="quarter lite-card ">
             <h3>Hours & Contact</h3>
@@ -364,10 +364,14 @@ if (
 <div id="copyright" class="copyright-bar">
     <div class="inner-wrapper copyright-inner">
         <div class="footer-socials">
-            <a href="#" target="_blank" rel="noopener" aria-label="Facebook icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank" rel="noopener" aria-label="Google icon"><i class="fab fa-google"></i></a>
-            <a href="#" target="_blank" rel="noopener" aria-label="Instagram icon"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank" rel="noopener" aria-label="Twitter icon"><i class="fab fa-twitter"></i></a>
+            <a class="footer-social-links" href="[SOCIAL_FB]" target="_blank" rel="noopener"
+                aria-label="Facebook logo"><i class="fab fa-facebook-f"></i></a>
+            <a class="footer-social-links" href="[SOCIAL_INSTA]" target="_blank" rel="noopener"
+                aria-label="Instagram logo"><i class="fab fa-instagram"></i></a>
+            <a class="footer-social-links" href="[SOCIAL_GOOGLE]" target="_blank" rel="noopener"
+                aria-label="Google logo"><i class="fab fa-google"></i></a>
+            <a class="footer-social-links" href="[SOCIAL_YELP]" target="_blank" rel="noopener" aria-label="yelp icon"><i
+                    class="fab fa-yelp"></i></a>
         </div>
         <p class="copyright-text">
             <a href="/privacy-policy/">Privacy Policy</a> <span>|</span>

@@ -23,7 +23,8 @@ function hamburgerMenu() {
       }
       hamburger.classList.add("open");
       hamburgerOpen = true;
-      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + subMenuTotals + "px";
+      mobileMenu.style.maxHeight =
+        mobileMenu.scrollHeight + subMenuTotals + "px";
     } else {
       hamburger.classList.remove("open");
       hamburgerOpen = false;
@@ -35,7 +36,10 @@ function hamburgerMenu() {
 function animateElement(e, className, duration) {
   const elements = document.getElementsByClassName(e);
   for (let i = 0; i < elements.length; i++) {
-    setTimeout(() => elements[i].classList.add(className), i * parseInt(duration));
+    setTimeout(
+      () => elements[i].classList.add(className),
+      i * parseInt(duration),
+    );
   }
 }
 
@@ -46,7 +50,9 @@ window.onload = function () {
     const menuItems = document.getElementsByClassName("menu-item");
     for (let i = 0; i < menuItems.length; i++) {
       if (menuItems[i].children[0].href === `${window.location.href}#`) {
-        menuItems[i].children[0].addEventListener("click", (e) => e.preventDefault());
+        menuItems[i].children[0].addEventListener("click", (e) =>
+          e.preventDefault(),
+        );
       }
     }
 
@@ -94,22 +100,34 @@ window.onload = function () {
 
   // ─── GSAP animations ───────────────────────────────────────────────────────
   if (typeof gsap !== "undefined") {
-    const h1       = document.querySelector(".entry-title h1");
-    const thumb    = document.querySelector(".thumbnail-image");
-    const excerpt  = document.querySelector(".entry-title p");
-    const buttons  = document.querySelector(".entry-title .buttons-ctn");
+    const h1 = document.querySelector(".entry-title h1");
+    const thumb = document.querySelector(".thumbnail-image");
+    const excerpt = document.querySelector(".entry-title p");
+    const buttons = document.querySelector(".entry-title .buttons-ctn");
+    const nav = document.querySelector(".nav-header-inner");
 
-    const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.3 } });
+    const tl = gsap.timeline({
+      defaults: { ease: "power1.out", duration: 0.3 },
+    });
+    const tl2 = gsap.timeline({
+      defaults: { ease: "power1.inOut", duration: 0.5 },
+    });
+    const tl3 = gsap.timeline({
+      defaults: { ease: "power3.inOut", duration: 0.7 },
+    });
 
-    const phase1 = [h1, thumb].filter(Boolean);
+    const phase1 = [nav].filter(Boolean);
     if (phase1.length) {
-      tl.fromTo(phase1,  { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 0);
+      tl.fromTo(phase1, { opacity: 0 }, { opacity: 1 }, 0);
     }
-    if (excerpt) {
-      tl.fromTo(excerpt, { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 0.2);
+
+    const phase2 = [h1, excerpt, buttons].filter(Boolean);
+    if (phase2.length) {
+      tl2.fromTo(phase2, { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 0);
     }
-    if (buttons) {
-      tl.fromTo(buttons, { opacity: 0 },         { opacity: 1 },         0.4);
+    const phase3 = [thumb].filter(Boolean);
+    if (phase3.length) {
+      tl3.fromTo(phase3, { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 0);
     }
   }
 
@@ -164,33 +182,46 @@ function lpSlider() {
 
 // ─── IMAGE MODALS ─────────────────────────────────────────────────────────────
 function enableImageModals() {
-  document.querySelectorAll(".new-lp .hero-card img.modal-on").forEach((img) => {
-    img.style.cursor = "pointer";
-    img.addEventListener("click", (event) => {
-      event.preventDefault();
+  document
+    .querySelectorAll(".new-lp .hero-card img.modal-on")
+    .forEach((img) => {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", (event) => {
+        event.preventDefault();
 
-      const dialog = document.createElement("dialog");
-      const modalContainer = document.createElement("div");
-      modalContainer.className = "modal-container";
+        const dialog = document.createElement("dialog");
+        const modalContainer = document.createElement("div");
+        modalContainer.className = "modal-container";
 
-      const closeBtn = document.createElement("button");
-      closeBtn.textContent = "✕";
-      closeBtn.className = "close-btn";
-      closeBtn.addEventListener("click", (e) => { e.stopPropagation(); dialog.close(); dialog.remove(); });
-      dialog.addEventListener("click", (e) => { if (e.target === dialog) { dialog.close(); dialog.remove(); } });
+        const closeBtn = document.createElement("button");
+        closeBtn.textContent = "✕";
+        closeBtn.className = "close-btn";
+        closeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          dialog.close();
+          dialog.remove();
+        });
+        dialog.addEventListener("click", (e) => {
+          if (e.target === dialog) {
+            dialog.close();
+            dialog.remove();
+          }
+        });
 
-      modalContainer.appendChild(closeBtn);
-      modalContainer.appendChild(img.cloneNode());
-      dialog.appendChild(modalContainer);
-      document.body.appendChild(dialog);
-      dialog.showModal();
+        modalContainer.appendChild(closeBtn);
+        modalContainer.appendChild(img.cloneNode());
+        dialog.appendChild(modalContainer);
+        document.body.appendChild(dialog);
+        dialog.showModal();
+      });
     });
-  });
 }
 
 // ─── TESTIMONIAL SLIDER ──────────────────────────────────────────────────────
 function testimonialSlider({ debug = false } = {}) {
-  const carousel = document.querySelector(".testimonial-section .carousel-body");
+  const carousel = document.querySelector(
+    ".testimonial-section .carousel-body",
+  );
   if (!carousel) return;
 
   const inner = carousel.querySelector(".carousel-inner");
@@ -200,7 +231,8 @@ function testimonialSlider({ debug = false } = {}) {
 
   arrow.addEventListener("click", () => {
     const style = window.getComputedStyle(cards[0]);
-    const increment = cards[0].offsetWidth + (parseFloat(style.marginRight) || 0);
+    const increment =
+      cards[0].offsetWidth + (parseFloat(style.marginRight) || 0);
     inner.scrollBy({ left: increment, behavior: "smooth" });
   });
 }
@@ -220,7 +252,9 @@ function testimonialSlider({ debug = false } = {}) {
   function init() {
     if (mark()) return;
     const root = document.querySelector(".entry-content") || document.body;
-    const observer = new MutationObserver((_, obs) => { if (mark()) obs.disconnect(); });
+    const observer = new MutationObserver((_, obs) => {
+      if (mark()) obs.disconnect();
+    });
     observer.observe(root, { childList: true, subtree: true });
     setTimeout(() => observer.disconnect(), 5000);
   }

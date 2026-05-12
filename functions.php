@@ -1188,6 +1188,34 @@ function ty() {
 }
 add_shortcode('ty','ty');
 
+function trim_words_keep_strong($html, $num_words, $more = '') {
+    $plain = wp_strip_all_tags($html);
+    $word_count = count(preg_split('/\s+/u', trim($plain), -1, PREG_SPLIT_NO_EMPTY));
+    if ($word_count <= $num_words) {
+        return $html . $more;
+    }
+    $parts = preg_split('/(<[^>]*>)/u', $html, -1, PREG_SPLIT_DELIM_CAPTURE);
+    $count = 0;
+    $result = '';
+    foreach ($parts as $part) {
+        if (str_starts_with($part, '<')) {
+            $result .= $part;
+            continue;
+        }
+        $segment_words = preg_split('/\s+/u', trim($part), -1, PREG_SPLIT_NO_EMPTY);
+        $needed = $num_words - $count;
+        if (count($segment_words) <= $needed) {
+            $result .= $part;
+            $count += count($segment_words);
+        } else {
+            $result .= implode(' ', array_slice($segment_words, 0, $needed));
+            $count = $num_words;
+            break;
+        }
+    }
+    return $result . $more;
+}
+
 function testimonials_cards($atts) {
     $data = shortcode_atts(array(
         'title' => ''
@@ -1225,7 +1253,7 @@ function testimonials_cards($atts) {
     <div class="testimonial-card">
         <div class="testimonial-card-content">
             <p>
-                <?php echo wp_trim_words($formatted_review, 35, ' <a href="/testimonials/">...Read More</a>'); ?>
+                <?php echo trim_words_keep_strong($formatted_review, 45); ?>
             </p>
             <p class="testimonial-title"><?php echo esc_html($title); ?></p>
         </div>
@@ -1271,16 +1299,16 @@ function random_testimonial($atts) {
         ?>
         <div class="testimonial-card">
             <div class="testimonial-card-content">
-                <span>
+                <span class="stars">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </span>
-                <p>
-                    <?php echo $raw_content ?>
-                </p>
+                <div>
+                    <?php echo preg_replace('/<p[^>]*>(\s|&nbsp;)*<\/p>/i', '', $raw_content); ?>
+                </div>
                 <p class="testimonial-title"><?php echo esc_html($title); ?></p>
             </div>
         </div>

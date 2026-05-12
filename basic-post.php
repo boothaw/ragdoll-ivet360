@@ -15,6 +15,16 @@ get_header(); ?>
                 <?php the_content(); ?>
                 <div class="entry-links"><?php wp_link_pages(); ?></div>
             </div>
+            <?php if ( has_category( 'services' ) ) :
+                $homepage_id = get_option( 'page_on_front' );
+                $blocks = parse_blocks( get_post_field( 'post_content', $homepage_id ) );
+                foreach ( $blocks as $block ) {
+                    if ( 'image-content-block/main' === $block['blockName'] && ! empty( $block['attrs']['className'] ) && false !== strpos( $block['attrs']['className'], 'services-cta' ) ) {
+                        echo preg_replace( '/<p[^>]*>.*?<\/p>/si', '', render_block( $block ) );
+                        break;
+                    }
+                }
+            endif; ?>
         </div>
     </article>
     <?php endwhile; endif; ?>
