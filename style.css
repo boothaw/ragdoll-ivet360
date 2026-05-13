@@ -326,7 +326,7 @@ ol {
 h1 {
   font-size: 56px;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin-bottom: 0.75em;
   line-height: 1.25em;
   color: var(--dark);
 }
@@ -334,7 +334,7 @@ h1 {
 h2 {
   font-size: 40px;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin-bottom: 0.75em;
   line-height: 1.25em;
   color: var(--dark);
 }
@@ -342,7 +342,7 @@ h2 {
 h3 {
   font-size: 28px;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin-bottom: 0.75em;
   line-height: 1.25em;
   color: var(--dark);
 }
@@ -350,7 +350,7 @@ h3 {
 h4 {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 1.25em;
+  margin-bottom: 1em;
   color: var(--dark);
 }
 body {
@@ -398,18 +398,14 @@ body {
   font-weight: lighter;
 }
 
-body:not(.home) #content ul,
-body:not(.home) #content ol {
-  /* margin: 0 0 1em 3em; */
-}
-
 body:not(.home) #content ul {
   list-style: disc;
   width: 100%;
 }
 
+.entry-content ol,
 .entry-content ul {
-  margin-left: 1.5em;
+  margin-left: 2em;
   margin-bottom: 1em;
 }
 
@@ -477,7 +473,7 @@ body:not(.home) #content ul {
   font-size: 12px;
   padding: 20px;
   text-transform: capitalize;
-  font-weight: 600;
+  font-weight: 700;
   width: fit-content;
   border: none;
   cursor: pointer;
@@ -833,28 +829,40 @@ body {
   align-items: center;
   position: relative;
 
-  .fa-angle-down {
+  .menu-chevron {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    transition: all 0.25s ease-in;
-    color: var(--dark);
-    padding: 2px;
+    transition: transform 0.25s ease-in;
+    overflow: visible;
   }
 
   &:hover {
-    .fa-angle-down {
+    .menu-chevron {
       transform: rotate(180deg);
     }
   }
+
+  &:has(.menu-chevron) {
+    & > a {
+      padding-right: 4px;
+    }
+  }
+}
+
+#menu #main-menu > li .menu-chevron path {
+  stroke: var(--dark);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 #menu #main-menu > li > a {
   height: 100%;
   position: relative;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--dark);
   display: flex;
   align-items: center;
@@ -1812,7 +1820,6 @@ body {
     padding: 0px;
     font-weight: 700;
     text-transform: capitalize;
-    line-height: 1;
     text-align: left;
   }
 
@@ -2035,16 +2042,18 @@ body {
   }
   .entry-content > .wp-block-columns.inner-wrapper.lite-card {
     background-color: var(--lite);
-    /* padding: 0px 0; */
     padding: 80px;
 
     .wp-block-column:first-of-type {
-      /* padding: 40px; */
       padding: 0px;
     }
     .wp-block-column:last-of-type {
-      /* padding: 40px; */
       padding: 0px;
+    }
+    .wp-block-column {
+      .wp-block-buttons:last-of-type {
+        margin-top: 2em;
+      }
     }
   }
 }
@@ -3057,9 +3066,16 @@ body {
   padding: 80px 60px;
 }
 
+#gform_confirmation_wrapper_1 {
+  width: 90%;
+  margin: 20px auto;
+  max-width: 1200px;
+  background-color: var(--medium);
+}
+
 #gform_confirmation_message_1 {
   font-size: 28px !important;
-  color: var(--dark) !important;
+  color: var(--lite) !important;
   padding: 20px 0 !important;
   display: flex !important;
   justify-content: center !important;
@@ -3105,6 +3121,11 @@ body {
 
       &::placeholder {
         color: var(--dark) !important;
+        transition: all 0.15s ease-in;
+      }
+
+      &:focus::placeholder {
+        opacity: 0.3;
       }
     }
 
@@ -3162,6 +3183,7 @@ body {
       width: 100%;
       display: flex;
       flex-direction: column;
+      transition: all ease-in 0.3s;
       justify-content: center;
     }
     & h3 {
@@ -3172,7 +3194,17 @@ body {
       margin: 0 auto;
     }
   }
-  .quarter.card {
+  .quarter.lite-card:hover {
+    background-color: var(--midnight);
+
+    & h3 {
+      color: var(--lite);
+    }
+    .ghost-button {
+      background-color: var(--medium) !important;
+      border-color: var(--medium) !important;
+      color: #fff !important;
+    }
   }
   .visit-cta {
     font-size: 28px;
@@ -3402,7 +3434,12 @@ body {
   .copyright-text {
     width: fit-content;
     margin: 0;
+    text-transform: uppercase;
   }
+}
+
+.i {
+  text-transform: lowercase !important;
 }
 
 .copyright-bar {
@@ -3481,7 +3518,7 @@ body:not(.home) .copyright-text {
 .page-id-39 .testimonial-section.bg-img {
   background-image: url(/wp-content/uploads/2025/10/young-girl-comforting-golden-retriever.png);
 }
-
+.home .testimonial-section.bg-img,
 .page-id-781 .testimonial-section.bg-img {
   background-image: url(/wp-content/uploads/2026/04/young-woman-on-phone-with-dog.png);
 }
@@ -4172,33 +4209,6 @@ body:not(.home) .copyright-text {
 }
 .button:hover,
 .button:focus {
-}
-.career-page h1 {
-  text-transform: uppercase;
-  color: var(--dark);
-  margin-bottom: 20px;
-}
-.career-page .hero {
-  background: #fff url(/wp-content/uploads/2021/09/Frame-5.svg) bottom right /
-    auto 80% no-repeat;
-  padding: 10% 30px;
-  position: relative;
-}
-.career-page .hero div {
-  max-width: 1024px;
-  margin: 0 auto;
-}
-.career-page .hero div > * {
-  max-width: 510px;
-}
-.hero-image {
-  position: absolute;
-  bottom: 0;
-  right: 10%;
-  max-height: 80%;
-  width: calc(100% - 570px);
-  object-fit: contain;
-  max-width: 30%;
 }
 
 .cta-section {

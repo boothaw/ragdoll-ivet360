@@ -335,29 +335,28 @@ if (
         </svg>
         <h2>Find An Insurance Provider</h2>
         <div class="buttons-ctn">
-            <a class="dark-button" href="#">Find A Provider</a>
+            <a class="dark-button" href="https://www.pawlicy.com/" target="_blank">Find A Provider</a>
         </div>
     </div>
     <?php } ?>
     <?php echo do_shortcode('[gravityform id="1" ajax="true"]'); ?>
     <div class="inner-wrapper footer-cards-ctn">
-        <div class="quarter lite-card ">
+        <a href="/contact/" class="quarter lite-card ">
             <h3>Hours & Contact</h3>
-            <a class="ghost-button" href="/contact/">Contact Us</a>
-        </div>
-        <div class="quarter lite-card ">
+            <div class="ghost-button">Contact Us</div>
+        </a>
+        <a href="tel:<?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?>" class="quarter lite-card ">
             <h3>Urgent Care Available</h3>
-            <a class="ghost-button"
-                href="tel:<?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?>"><?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?></a>
-        </div>
-        <div class="quarter lite-card ">
+            <div class="ghost-button"><?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?></div>
+        </a>
+        <a href="[PHARMACY LINK]" target="_blank" class="quarter lite-card ">
             <h3>Online Pharmacy</h3>
-            <a class="ghost-button" href="[PHARMACY LINK]">Order Now</a>
-        </div>
-        <div class="quarter lite-card ">
+            <div class="ghost-button">Order Now</div>
+        </a>
+        <a href="/client-forms/" class="quarter lite-card ">
             <h3>New Client Forms</h3>
-            <a class="ghost-button" href="/client-forms/">View Forms</a>
-        </div>
+            <div class="ghost-button">View Forms</div>
+        </a>
     </div>
     <span class="visit-cta">Visit [Hospital Name] at <a href="/contact/">[Hospital Address]</a>.</span>
 </footer>
@@ -379,8 +378,8 @@ if (
                 <?php echo date("Y"); ?> -
                 <?php echo get_bloginfo('name') ?>. </span><a href="https://ivet360.com/marketing/"
                 target="_blank">Veterinary
-                Marketing</a><span> powered by </span><a href="https://ivet360.com/"
-                target="_blank">iVET360</a><span>.</span>
+                Marketing</a><span> powered by </span><a href="https://ivet360.com/" target="_blank"><span
+                    class="i">i</span>VET360</a><span>.</span>
         </p>
     </div>
 </div>

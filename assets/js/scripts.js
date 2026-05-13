@@ -96,9 +96,21 @@ window.onload = function () {
     // Desktop nav: add dropdown arrow icons
     document.querySelectorAll("#menu .menu > li").forEach((item) => {
       if (item.querySelector("ul")) {
-        const icon = document.createElement("i");
-        icon.classList.add("fas", "fa-angle-down");
-        item.appendChild(icon);
+        const svg = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg",
+        );
+        svg.setAttribute("width", "10");
+        svg.setAttribute("height", "7");
+        svg.setAttribute("viewBox", "0 0 10 7");
+        svg.classList.add("menu-chevron");
+        const path = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "path",
+        );
+        path.setAttribute("d", "M1 1L5 6L9 1");
+        svg.appendChild(path);
+        item.appendChild(svg);
       }
     });
 
@@ -169,7 +181,7 @@ window.onload = function () {
     }
     const phase3 = [thumb].filter(Boolean);
     if (phase3.length) {
-      tl3.fromTo(phase3, { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, 0);
+      tl3.fromTo(phase3, { opacity: 0 }, { opacity: 1 }, 0);
     }
 
     // ─── Scroll-triggered fade-ins ─────────────────────────────────────────

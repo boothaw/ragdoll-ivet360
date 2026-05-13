@@ -7,7 +7,7 @@
             <p class="baseline"><?php echo $position ?></p>
         </div>
         <?php if ( has_post_thumbnail() ) { ?>
-        <img class="thumbnail-image" src=<?php echo get_the_post_thumbnail_url(); ?>"
+        <img class="thumbnail-image" src="<?php echo get_the_post_thumbnail_url(); ?>"
             alt="<?php echo get_the_title(); ?>" />
         <?php } ?>
     </div>
