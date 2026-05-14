@@ -235,7 +235,10 @@ window.onload = function () {
     }
 
     // ─── Button hover text wave animations ──────────────────────────────────
-    if (typeof SplitText !== "undefined") {
+    if (
+      typeof SplitText !== "undefined" &&
+      window.matchMedia("(hover: hover)").matches
+    ) {
       const btnSel = [
         ".wp-block-button__link",
         ".dark-button",
@@ -249,6 +252,8 @@ window.onload = function () {
       document.querySelectorAll(btnSel).forEach((btn) => {
         if (btn.tagName.toLowerCase() === "input") return;
 
+        const iconEl = btn.querySelector(":scope > i");
+
         let textEl = btn.querySelector(":scope > span");
         if (!textEl) {
           const textNodes = Array.from(btn.childNodes).filter(
@@ -260,6 +265,8 @@ window.onload = function () {
           textNodes.forEach((n) => textEl.appendChild(n));
         }
         textEl.classList.add("btn-text-top");
+
+        if (iconEl) textEl.prepend(iconEl);
 
         // Replace spaces with NBSP before splitting — SplitText leaves regular spaces
         // as unanimated text nodes, but wraps NBSP as proper char elements
@@ -276,15 +283,30 @@ window.onload = function () {
         // placing it inside textEl keeps it aligned to the text span, not the full button width
         const bottomEl = document.createElement("span");
         bottomEl.className = "btn-text-bottom";
-        bottomEl.textContent = btnText;
         bottomEl.setAttribute("aria-hidden", "true");
+        if (iconEl) {
+          const iconClone = iconEl.cloneNode(true);
+          bottomEl.appendChild(iconClone);
+        }
+        bottomEl.append(btnText);
         textEl.appendChild(bottomEl);
 
         const bottomSplit = new SplitText(bottomEl, { type: "chars" });
 
         // Travel far enough to fully clear into the button's padding zone
         const h = Math.ceil((btn.offsetHeight + textEl.offsetHeight) / 2) + 4;
-        gsap.set(bottomSplit.chars, { y: h });
+
+        const topAnimEls = iconEl
+          ? [iconEl, ...topSplit.chars]
+          : topSplit.chars;
+        const bottomIconClone = iconEl
+          ? bottomEl.querySelector(":scope > i")
+          : null;
+        const bottomAnimEls = bottomIconClone
+          ? [bottomIconClone, ...bottomSplit.chars]
+          : bottomSplit.chars;
+
+        gsap.set(bottomAnimEls, { y: h });
 
         let hoverTl = null;
         let hoverTimeout = null;
@@ -296,19 +318,18 @@ window.onload = function () {
             hoverTimeout = null;
             hoverTl = gsap.timeline();
             hoverTl
-              .to(topSplit.chars, {
+              .to(topAnimEls, {
                 y: -h,
-                stagger: 0.01,
-                duration: 0.4,
+                stagger: 0.015,
                 ease: "power2.in",
               })
               .fromTo(
-                bottomSplit.chars,
+                bottomAnimEls,
                 { y: h },
-                { y: 0, stagger: 0.01, duration: 0.4, ease: "power2.out" },
-                "-=0.2",
+                { y: 0, stagger: 0.015, ease: "power2.out" },
+                "-=0.4",
               );
-          }, 200);
+          }, 100);
         });
 
         btn.addEventListener("mouseleave", () => {
@@ -320,17 +341,16 @@ window.onload = function () {
           if (hoverTl) hoverTl.kill();
           hoverTl = gsap.timeline();
           hoverTl
-            .to(bottomSplit.chars, {
+            .to(bottomAnimEls, {
               y: h,
-              stagger: 0.01,
-              duration: 0.4,
+              stagger: 0.015,
               ease: "power2.in",
             })
             .fromTo(
-              topSplit.chars,
+              topAnimEls,
               { y: -h },
-              { y: 0, stagger: 0.01, duration: 0.4, ease: "power2.out" },
-              "-=0.2",
+              { y: 0, stagger: 0.015, ease: "power2.out" },
+              "-=0.4",
             );
         });
       });

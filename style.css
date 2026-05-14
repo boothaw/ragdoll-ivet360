@@ -44,8 +44,6 @@ TABLE OF CONTENTS:
   --black: #0d0d0d;
   --primaryFont: "area-normal", sans-serif;
   --primarySecondary: "area-normal", sans-serif;
-  /* --transparent-lite: #ECFBFE33; */
-  /* --transparent-midnight: #04607733; */
 }
 
 @property --header-reveal {
@@ -509,6 +507,11 @@ body:not(.home) #content ul {
   padding: var(--btn-clip-pad) 0;
 }
 
+.btn-text-top > i,
+.btn-text-bottom > i {
+  margin-right: 12px;
+}
+
 .btn-text-bottom {
   position: absolute;
   inset: 0;
@@ -815,10 +818,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-
-  & i {
-    margin: 0;
-  }
 }
 
 .nav-cta-inner {
@@ -1139,24 +1138,13 @@ body {
 }
 
 /*--------------------------------------------------------------
-# Homepage
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
 ## Hero
 --------------------------------------------------------------*/
-
-/* #hero-outer-container {
-  position: relative;
-  width: 100vw;
-  height: 45vw;
-} */
 
 #hero-container {
   position: relative;
   width: 100vw;
   height: 45vw;
-  /* background-image: url('/wp-content/uploads/2020/03/homepage-slider.png'); */
   background-size: cover;
   overflow: hidden;
 }
@@ -1223,8 +1211,6 @@ body {
 --------------------------------------------------------------*/
 
 #three-callouts {
-  /* width: 100vw;
-  height: min(25vw, 500px); */
   width: 90%;
   max-width: 1200px;
   margin: 40px auto;
@@ -1336,24 +1322,6 @@ body {
 }
 
 .about-col.full-width-col {
-  /* padding: 80px 0;
-  display: flex;
-
-  .wp-block-column {
-    width: 100%;
-    margin: 0 auto;
-
-    & p:first-of-type {
-      color: var(--dark);
-    }
-
-    & > *:not(.wp-block-separator) {
-      width: 90%;
-      max-width: 950px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  } */
 }
 
 .bg-dark.who-we-are.full-width-col {
@@ -1476,49 +1444,6 @@ body {
     padding: 12px 0;
   }
 }
-
-/* .services-columns-block,
-.full-width-col.wp-block-columns.service-col {
-  width: 100vw;
-  padding: 80px 0;
-
-  & > .wp-block-column .wp-block-columns .wp-block-column:last-of-type {
-    & li {
-      list-style-image: url(/wp-content/uploads/2024/10/Group.svg);
-      padding-left: 12px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--dark);
-    }
-    & li::marker {
-      margin-right: 12px;
-    }
-    & li:not(:first-of-type) {
-      padding-top: 12px;
-    }
-  }
-} */
-
-/* .service-call-card {
-  background-color: #fff;
-  padding: 40px;
-  margin-top: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
-
-  & h3.underlined {
-    color: var(--dark);
-    border-bottom: 2px solid var(--dark);
-  }
-
-  .appointment-box {
-    justify-content: center;
-
-    .button-container:first-of-type {
-      margin-right: auto;
-      margin-left: auto;
-    }
-  }
-} */
 
 .join-team-card {
   & h3.underlined {
@@ -3615,207 +3540,9 @@ body:not(.home) .copyright-text {
   }
 }
 
-/* carousel styles */
-/* .carousel-body {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-.carousel-inner {
-  display: flex;
-  transition: all 0.6s ease;
-  overflow-y: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  padding-right: 20px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-.carousel-card {
-  scroll-snap-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-right: 32px;
-  width: calc(30% - 32px);
-
-  &:first-of-type {
-    margin-left: 20px;
-  }
-} */
-
-/*--------------------------------------------------------------
-# Hidden Elements -- take this shit below out????
---------------------------------------------------------------*/
-/* 
-.page-id-632 .nav-cta,
-.page-id-632 #menu,
-.page-id-632 #header-social-box,
-.page-id-632 .inner-header,
-.page-id-632 .appointment-area,
-.page-id-632 #footer,
-.page-id-632 #sticky-header,
-.page-id-632 #copyright,
-.page-id-630 .nav-cta,
-.page-id-630 #menu,
-.page-id-630 #header-social-box,
-.page-id-630 .inner-header,
-.page-id-630 .appointment-area,
-.page-id-630 #footer,
-.page-id-630 #sticky-header,
-.page-id-630 #copyright,
-.page-id-369 #sticky-header,
-.page-id-369 #copyright,
-.page-id-371 .nav-cta,
-.page-id-371 #menu,
-.page-id-371 #header-social-box,
-.page-id-371 .appointment-area,
-.page-id-371 #footer,
-.page-id-371 #sticky-header,
-.page-id-371 .copyright-bar {
-  display: none !important;
-}
-
-.page-id-632 #sticky-header,
-.page-id-630 #sticky-header,
-.page-id-369 #sticky-header,
-.page-id-371 #sticky-header {
-  padding: 0;
-}
-
-.page-id-632 #main-header,
-.page-id-630 #main-header,
-.page-id-369 #main-header,
-.page-id-371 #main-header {
-  display: flex;
-  justify-content: center;
-}
-
-.page-id-632 .header,
-.page-id-630 .header {
-  height: 40px;
-} */
-
 /*--------------------------------------------------------------
 # Media Queries
 --------------------------------------------------------------*/
-
-/* @media screen and (max-width: 1120px) {
-
-  #hero-container {
-    overflow-y: inherit;
-    height: 100%;
-    display: flex;
-  }
-
-  #video-697-2 {
-    display: flex;
-  }
-
-  #video-text {
-    height: fit-content;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    bottom: 0;
-  }
-
-  .inner-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .fifty-percent {
-    width: 100%;
-    padding: 0 !important;
-    text-align: center;
-    margin: 15px 0;
-  }
-
-  .about-section {
-    width: 100%;
-    padding: 0 !important;
-    margin-bottom: 25px;
-  }
-
-  #about-intro {
-    margin-top: 25px;
-  }
-
-  #services-box {
-    margin-left: 0;
-  }
-
-  .services-inner {
-    width: fit-content;
-  }
-
-  #icons-image,
-  #hp-services-intro p,
-  #services-title,
-  #team-image {
-    display: none;
-  }
-
-  #meet-the-team .fifty-percent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .home .appointment-area {
-    background-position: center;
-  }
-
-  #contact-us {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  #contact-map,
-  #contact-info {
-    width: 100%;
-  }
-
-  #gform_1 .gform_footer.top_label {
-    display: flex;
-    justify-content: center;
-  }
-
-  .team-text {
-    padding: 0;
-    margin-top: 5%;
-  }
-
-  .dvm-team-container-inner {
-    display: block;
-  }
-
-  .team-photo {
-    float: left;
-    margin-right: 35px;
-    margin-bottom: 10px;
-  }
-
-
-  .copyright-bar .inner-wrapper {
-    justify-content: center;
-  }
-
-  .footer-socials {
-    margin-bottom: 12px;
-    justify-content: center;
-  }
-
-  .copyright-text {
-    text-align: center;
-  }
-} */
 
 @media screen and (max-width: 1200px) {
   /* NOTE: This media query is exclusively for displaying mobile header elements. Adjust the breakpoint depending on the amount of menu items you have. */
@@ -3823,6 +3550,10 @@ body:not(.home) .copyright-text {
   .logo-container,
   .nav-cta {
     width: auto;
+
+    & i {
+      margin: 0;
+    }
   }
 
   #mobile-menu-container {
