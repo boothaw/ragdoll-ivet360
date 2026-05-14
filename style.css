@@ -48,6 +48,12 @@ TABLE OF CONTENTS:
   /* --transparent-midnight: #04607733; */
 }
 
+@property --header-reveal {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
 html,
 body,
 div,
@@ -1885,7 +1891,11 @@ body {
   display: flex;
   justify-content: center;
   width: 100vw;
-  background-color: var(--lite);
+  background: linear-gradient(
+    to bottom,
+    var(--lite) var(--header-reveal),
+    transparent var(--header-reveal)
+  );
   position: relative;
   padding: 80px 0;
 }

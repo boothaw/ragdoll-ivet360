@@ -165,6 +165,16 @@ window.onload = function () {
       defaults: { ease: "power3.inOut", duration: 0.7 },
     });
 
+    const header = document.querySelector(".header");
+    if (header) {
+      tl.fromTo(
+        header,
+        { "--header-reveal": "0%" },
+        { "--header-reveal": "100%", duration: 0.2, ease: "power1.out" },
+        0,
+      );
+    }
+
     const phase1 = [nav].filter(Boolean);
     if (phase1.length) {
       tl.fromTo(phase1, { opacity: 0 }, { opacity: 1 }, 0);
