@@ -180,7 +180,7 @@ window.onload = function () {
       tl.fromTo(phase1, { opacity: 0 }, { opacity: 1 }, 0);
     }
 
-    const phase2 = [h1, ...excerpts, buttons].filter(Boolean);
+    const phase2 = [h1, thumb, ...excerpts, buttons].filter(Boolean);
     if (phase2.length) {
       tl2.fromTo(
         phase2,
@@ -188,10 +188,6 @@ window.onload = function () {
         { opacity: 1, y: 0, stagger: 0.1 },
         0,
       );
-    }
-    const phase3 = [thumb].filter(Boolean);
-    if (phase3.length) {
-      tl3.fromTo(phase3, { opacity: 0 }, { opacity: 1 }, 0);
     }
 
     // ─── Scroll-triggered fade-ins ─────────────────────────────────────────
@@ -265,7 +261,13 @@ window.onload = function () {
         }
         textEl.classList.add("btn-text-top");
 
-        // Capture text before SplitText modifies the DOM — preserves spaces exactly
+        // Replace spaces with NBSP before splitting — SplitText leaves regular spaces
+        // as unanimated text nodes, but wraps NBSP as proper char elements
+        Array.from(textEl.childNodes).forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            node.textContent = node.textContent.replace(/ /g, " ");
+          }
+        });
         const btnText = textEl.textContent;
 
         const topSplit = new SplitText(textEl, { type: "chars" });
@@ -280,37 +282,56 @@ window.onload = function () {
 
         const bottomSplit = new SplitText(bottomEl, { type: "chars" });
 
-        const h = btn.offsetHeight;
+        // Travel far enough to fully clear into the button's padding zone
+        const h = Math.ceil((btn.offsetHeight + textEl.offsetHeight) / 2) + 4;
         gsap.set(bottomSplit.chars, { y: h });
 
+        let hoverTl = null;
+        let hoverTimeout = null;
+
         btn.addEventListener("mouseenter", () => {
-          gsap.killTweensOf([...topSplit.chars, ...bottomSplit.chars]);
-          gsap.to(topSplit.chars, {
-            y: -h,
-            stagger: 0.02,
-            duration: 0.4,
-            ease: "power2.in",
-          });
-          gsap.fromTo(
-            bottomSplit.chars,
-            { y: h },
-            { y: 0, stagger: 0.02, duration: 0.4, ease: "power2.out" },
-          );
+          if (hoverTl) hoverTl.kill();
+          clearTimeout(hoverTimeout);
+          hoverTimeout = setTimeout(() => {
+            hoverTimeout = null;
+            hoverTl = gsap.timeline();
+            hoverTl
+              .to(topSplit.chars, {
+                y: -h,
+                stagger: 0.01,
+                duration: 0.4,
+                ease: "power2.in",
+              })
+              .fromTo(
+                bottomSplit.chars,
+                { y: h },
+                { y: 0, stagger: 0.01, duration: 0.4, ease: "power2.out" },
+                "-=0.2",
+              );
+          }, 200);
         });
 
         btn.addEventListener("mouseleave", () => {
-          gsap.killTweensOf([...topSplit.chars, ...bottomSplit.chars]);
-          gsap.to(bottomSplit.chars, {
-            y: h,
-            stagger: 0.02,
-            duration: 0.4,
-            ease: "power2.in",
-          });
-          gsap.fromTo(
-            topSplit.chars,
-            { y: -h },
-            { y: 0, stagger: 0.02, duration: 0.4, ease: "power2.out" },
-          );
+          if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+            hoverTimeout = null;
+            return;
+          }
+          if (hoverTl) hoverTl.kill();
+          hoverTl = gsap.timeline();
+          hoverTl
+            .to(bottomSplit.chars, {
+              y: h,
+              stagger: 0.01,
+              duration: 0.4,
+              ease: "power2.in",
+            })
+            .fromTo(
+              topSplit.chars,
+              { y: -h },
+              { y: 0, stagger: 0.01, duration: 0.4, ease: "power2.out" },
+              "-=0.2",
+            );
         });
       });
     }

@@ -477,7 +477,7 @@ body:not(.home) #content ul {
 .gform_previous_button,
 .gform_button {
   font-size: 12px;
-  padding: 20px;
+  padding: 15px 20px;
   text-transform: capitalize;
   font-weight: 700;
   width: fit-content;
@@ -502,14 +502,17 @@ body:not(.home) #content ul {
 }
 
 .btn-text-top {
+  --btn-clip-pad: 4px;
   position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: var(--btn-clip-pad) 0;
 }
 
 .btn-text-bottom {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
+  padding-top: var(--btn-clip-pad);
   pointer-events: none;
   white-space: nowrap;
 }
