@@ -1779,6 +1779,13 @@ body {
     justify-content: center;
   }
 }
+.service-post .inner-header.no-thumbnail {
+  .entry-title {
+    & p {
+      margin-bottom: 1em;
+    }
+  }
+}
 .inner-header.has-thumbnail {
   /* flex-wrap: wrap; */
   /* justify-content: center; */
@@ -2018,8 +2025,9 @@ body {
 
     .wp-block-column:first-of-type {
       background-color: var(--lite);
-      padding: 40px;
+      padding: 60px 80px;
       border-radius: 32px;
+      max-width: 50%;
 
       & p {
         text-align: center;
@@ -2072,6 +2080,7 @@ body {
     > h5,
     > ul,
     > p,
+    > .wp-block-buttons,
     > .gform_wrapper,
     > strong {
       width: 90%;
@@ -2200,10 +2209,12 @@ body {
     padding: 0px 0;
 
     .wp-block-column:first-of-type {
-      padding: 40px;
+      padding: 60px 80px;
+      max-width: 50%;
     }
     .wp-block-column:last-of-type {
-      padding: 40px;
+      padding: 60px 80px;
+      max-width: 50%;
     }
   }
   .full-width-col.wp-block-columns {
@@ -2234,7 +2245,7 @@ body {
 }
 
 .dvm-section .dvm-container {
-  padding: 40px 0;
+  padding: 40px 0 0 0;
 
   .dvm-team-container-inner {
     justify-content: space-between;
@@ -2327,7 +2338,7 @@ body {
 }
 
 .staff-section {
-  padding: 80px 0;
+  padding: 80px 0 0 0;
 }
 
 .staff-container {
@@ -2341,6 +2352,7 @@ body {
   & h2 {
     text-transform: capitalize;
     text-align: center;
+    margin-bottom: 80px;
   }
 }
 
@@ -2377,114 +2389,6 @@ body {
 ## SP Services
 --------------------------------------------------------------*/
 
-/* .services-list {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  background-color: var(--dark);
-  margin-top: 60px;
-}
-.services-list-container {
-  width: 90%;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 0 100px 0;
-  justify-content: center;
-}
-.services-list-wrapper {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px 0 45px 0;
-}
-.service-list-card {
-  position: relative;
-  width: 40%;
-  margin: 25px 25px 0px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
-  border-bottom: 2px solid var(--lite);
-  transition: all 0.5s ease;
-}
-.service-list-card h2 {
-  text-align: center;
-  font-size: 20px;
-  color: var(--dark);
-  text-transform: uppercase;
-  color: var(--lite);
-  transition: all 0.5s ease;
-  text-transform: initial;
-  margin-bottom: 25px;
-  text-align: left;
-}
-.service-list-card:hover {
-}
-.service-list-card:hover .service-list-bg {
-
-}
-.service-list-card:hover .service-list-overlay p {
- 
-}
-.service-arrow-ctn {
-  display: flex;
-  margin-bottom: 20px;
-}
-.arrow-right {
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 8px solid var(--lite);
-}
-.service-list-card svg {
-  fill: var(--lite);
-  width: 35px;
-  height: 16px;
-  transition: width 0.5s ease;
-}
-.service-list-card svg line {
-  stroke: var(--lite);
-  transition: width 0.5s ease;
-}
-.service-list-card:hover {
-  border-bottom: 2px solid var(--lite);
-}
-.service-list-card:hover svg {
-  width: 50px;
-}
-.service-list-card:hover svg line {
-  width: 70px;
-  stroke: var(--lite);
-}
-.service-list-card:hover .arrow-right {
-  border-left: 8px solid var(--lite);
-}
-
-@media screen and (max-width: 700px) {
-  .service-list-card {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .footer-callout-wrapper {
-    flex-direction: column;
-
-    & p:first-of-type {
-      padding-bottom: 20px;
-    }
-  }
-  .blue-button {
-  }
-} */
-
 .page-template-team,
 .page-template-services-page {
   .entry-content {
@@ -2520,7 +2424,7 @@ body {
     & span {
       color: var(--dark);
       font-size: 28px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .sticky-inner {
@@ -2532,9 +2436,13 @@ body {
       gap: 20px;
 
       & a {
-        color: var(--dark);
         text-transform: uppercase;
-        font-size: 14px;
+        font-weight: 700;
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.04em;
+        font-size: 12px;
 
         &:hover {
           color: var(--medium);
@@ -2558,7 +2466,8 @@ body {
 
     .wp-block-column:first-of-type {
       background-color: var(--lite);
-      padding: 40px;
+      padding: 60px 80px;
+      max-width: 50%;
       border-radius: 32px;
       display: flex;
       flex-direction: column;
@@ -3235,6 +3144,10 @@ body {
       font-weight: bold;
     }
   }
+}
+
+.footer:not(:has(.footer-book-now)) #gform_wrapper_1 {
+  margin-top: 0;
 }
 
 @media (max-width: 1024px) {

@@ -14,6 +14,13 @@
                     href="tel:<?php the_author_meta( 'phone' )?>"><?php the_author_meta( 'phone' )?></a>
             </div>
             <?php } ?>
+            <?php if ( is_singular('post') && has_category('career') ) {
+                $apply_url = get_field('apply_url');
+                if ( $apply_url ) { ?>
+            <div class="buttons-ctn">
+                <a class="dark-button" href="<?php echo esc_attr( $apply_url ); ?>">Apply Now</a>
+            </div>
+            <?php } } ?>
         </div>
         <?php if ( has_post_thumbnail() ) { ?>
         <img class="thumbnail-image" src="<?php echo get_the_post_thumbnail_url(); ?>"

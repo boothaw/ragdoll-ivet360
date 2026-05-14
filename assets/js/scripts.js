@@ -151,7 +151,7 @@ window.onload = function () {
   if (typeof gsap !== "undefined") {
     const h1 = document.querySelector(".entry-title h1");
     const thumb = document.querySelector(".thumbnail-image");
-    const excerpt = document.querySelector(".entry-title p");
+    const excerpts = Array.from(document.querySelectorAll(".entry-title p"));
     const buttons = document.querySelector(".entry-title .buttons-ctn");
     const nav = document.querySelector(".nav-header-inner");
 
@@ -170,7 +170,7 @@ window.onload = function () {
       tl.fromTo(phase1, { opacity: 0 }, { opacity: 1 }, 0);
     }
 
-    const phase2 = [h1, excerpt, buttons].filter(Boolean);
+    const phase2 = [h1, ...excerpts, buttons].filter(Boolean);
     if (phase2.length) {
       tl2.fromTo(
         phase2,

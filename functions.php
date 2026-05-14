@@ -1419,7 +1419,7 @@ function lp($atts) {
 		'tracking_line' => '[PHONE NUMBER]',
 		'appt_link' => '/make-appointment-ads/',
 		'map_link' => 'https://maps.app.goo.gl/QBBZaRyUKsYtVBY17',
-		'address' => '[Hospital Address]',
+		'address' => '[ADDRESS]',
 		'name' => get_bloginfo('name'),
 		'logo' => '/wp-content/uploads/2025/03/AVC-logo.svg',
 		'hero' => '/wp-content/uploads/2025/03/AVC-lp-hero-card.png',
@@ -1741,6 +1741,35 @@ function my_auto_blocks_reset_ajax() {
     wp_send_json_success( array( 'message' => 'Auto blocks have been reset and re-added successfully!' ) );
 }
 add_action( 'wp_ajax_my_auto_blocks_reset', 'my_auto_blocks_reset_ajax' );
+
+if ( function_exists('acf_add_local_field_group') ) {
+    acf_add_local_field_group(array(
+        'key'      => 'group_career_apply_link',
+        'title'    => 'Career Post Settings',
+        'fields'   => array(
+            array(
+                'key'          => 'field_career_apply_url',
+                'label'        => 'Apply URL',
+                'name'         => 'apply_url',
+                'type'         => 'text',
+                'instructions' => 'Link for the Apply Now button. Leave blank to use #.',
+                'required'     => 0,
+                'placeholder'  => '#',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'post_category',
+                    'operator' => '==',
+                    'value'    => 'category:career',
+                ),
+            ),
+        ),
+        'position' => 'normal',
+        'style'    => 'default',
+    ));
+}
 
 add_filter('wpseo_robots', function($robots) {
     if (is_page_template('thank-you.php') || is_page_template('landing.php')) {

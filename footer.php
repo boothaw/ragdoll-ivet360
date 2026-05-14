@@ -3,7 +3,7 @@
     <?php
 if (
     is_front_page() ||
-    ( is_singular('post') && has_category('services') ) ||
+    ( is_singular('post') && has_category(['services', 'dvm', 'team', 'staff']) ) ||
     is_page_template('team.php') 
 ) {
 ?>
@@ -358,7 +358,7 @@ if (
             <div class="ghost-button">View Forms</div>
         </a>
     </div>
-    <span class="visit-cta">Visit [Hospital Name] at <a href="/contact/">[Hospital Address]</a>.</span>
+    <span class="visit-cta">Visit [HOSPITAL NAME] at <a href="/contact/">[ADDRESS]</a>.</span>
 </footer>
 <div id="copyright" class="copyright-bar">
     <div class="inner-wrapper copyright-inner">
