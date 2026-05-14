@@ -237,6 +237,83 @@ window.onload = function () {
         }
       });
     }
+
+    // ─── Button hover text wave animations ──────────────────────────────────
+    if (typeof SplitText !== "undefined") {
+      const btnSel = [
+        ".wp-block-button__link",
+        ".dark-button",
+        ".lite-button",
+        ".ghost-button",
+        ".gform_next_button",
+        ".gform_previous_button",
+        ".gform_button",
+      ].join(", ");
+
+      document.querySelectorAll(btnSel).forEach((btn) => {
+        if (btn.tagName.toLowerCase() === "input") return;
+
+        let textEl = btn.querySelector(":scope > span");
+        if (!textEl) {
+          const textNodes = Array.from(btn.childNodes).filter(
+            (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim(),
+          );
+          if (!textNodes.length) return;
+          textEl = document.createElement("span");
+          btn.insertBefore(textEl, textNodes[0]);
+          textNodes.forEach((n) => textEl.appendChild(n));
+        }
+        textEl.classList.add("btn-text-top");
+
+        // Capture text before SplitText modifies the DOM — preserves spaces exactly
+        const btnText = textEl.textContent;
+
+        const topSplit = new SplitText(textEl, { type: "chars" });
+
+        // Append clone AFTER splitting top so SplitText doesn't process it twice;
+        // placing it inside textEl keeps it aligned to the text span, not the full button width
+        const bottomEl = document.createElement("span");
+        bottomEl.className = "btn-text-bottom";
+        bottomEl.textContent = btnText;
+        bottomEl.setAttribute("aria-hidden", "true");
+        textEl.appendChild(bottomEl);
+
+        const bottomSplit = new SplitText(bottomEl, { type: "chars" });
+
+        const h = btn.offsetHeight;
+        gsap.set(bottomSplit.chars, { y: h });
+
+        btn.addEventListener("mouseenter", () => {
+          gsap.killTweensOf([...topSplit.chars, ...bottomSplit.chars]);
+          gsap.to(topSplit.chars, {
+            y: -h,
+            stagger: 0.02,
+            duration: 0.4,
+            ease: "power2.in",
+          });
+          gsap.fromTo(
+            bottomSplit.chars,
+            { y: h },
+            { y: 0, stagger: 0.02, duration: 0.4, ease: "power2.out" },
+          );
+        });
+
+        btn.addEventListener("mouseleave", () => {
+          gsap.killTweensOf([...topSplit.chars, ...bottomSplit.chars]);
+          gsap.to(bottomSplit.chars, {
+            y: h,
+            stagger: 0.02,
+            duration: 0.4,
+            ease: "power2.in",
+          });
+          gsap.fromTo(
+            topSplit.chars,
+            { y: -h },
+            { y: 0, stagger: 0.02, duration: 0.4, ease: "power2.out" },
+          );
+        });
+      });
+    }
   }
 
   testimonialSlider();

@@ -483,17 +483,35 @@ body:not(.home) #content ul {
   width: fit-content;
   border: none;
   cursor: pointer;
-  transition: all 0.6s ease;
+  transition:
+    background-color 0.6s ease,
+    border-color 0.6s ease,
+    color 0.6s ease;
   border-radius: 10px;
   display: flex;
   align-items: center;
   text-transform: uppercase;
   line-height: 1;
   text-decoration: none !important;
+  position: relative;
+  overflow: hidden !important;
 
   & i {
     margin-right: 4px;
   }
+}
+
+.btn-text-top {
+  position: relative;
+}
+
+.btn-text-bottom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .gform_next_button,
