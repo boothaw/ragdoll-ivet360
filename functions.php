@@ -82,35 +82,122 @@ add_action( 'wp_head', 'blankslate_pingback_header' );
 
 function footer_one() {
   register_sidebar( array(
-      'name' => __( 'Footer One', 'smallenvelop' ),
-      'id' => 'footer-one',
+      'name'          => __( 'Footer Card 1', 'smallenvelop' ),
+      'id'            => 'footer-one',
+      'before_widget' => '',
+      'after_widget'  => '',
+      'before_title'  => '',
+      'after_title'   => '',
   ) );
 }
 add_action( 'widgets_init', 'footer_one' );
 
 function footer_two() {
   register_sidebar( array(
-      'name' => __( 'Footer Two', 'smallenvelop' ),
-      'id' => 'footer-two',
+      'name'          => __( 'Footer Card 2', 'smallenvelop' ),
+      'id'            => 'footer-two',
+      'before_widget' => '',
+      'after_widget'  => '',
+      'before_title'  => '',
+      'after_title'   => '',
   ) );
 }
 add_action( 'widgets_init', 'footer_two' );
 
 function footer_three() {
   register_sidebar( array(
-      'name' => __( 'Footer Three', 'smallenvelop' ),
-      'id' => 'footer-three',
+      'name'          => __( 'Footer Card 3', 'smallenvelop' ),
+      'id'            => 'footer-three',
+      'before_widget' => '',
+      'after_widget'  => '',
+      'before_title'  => '',
+      'after_title'   => '',
   ) );
 }
 add_action( 'widgets_init', 'footer_three' );
 
 function footer_four() {
   register_sidebar( array(
-      'name' => __( 'Footer Four', 'smallenvelop' ),
-      'id' => 'footer-four',
+      'name'          => __( 'Footer Card 4', 'smallenvelop' ),
+      'id'            => 'footer-four',
+      'before_widget' => '',
+      'after_widget'  => '',
+      'before_title'  => '',
+      'after_title'   => '',
   ) );
 }
 add_action( 'widgets_init', 'footer_four' );
+
+class Footer_Card_Widget extends WP_Widget {
+
+  public function __construct() {
+    parent::__construct(
+      'footer_card_widget',
+      __( 'Footer Card', 'ivet360' ),
+      array( 'description' => __( 'A linked card for the footer row (heading + button).', 'ivet360' ) )
+    );
+  }
+
+  public function widget( $args, $instance ) {
+    $heading     = ! empty( $instance['heading'] )     ? $instance['heading']     : '';
+    $button_text = ! empty( $instance['button_text'] ) ? $instance['button_text'] : '';
+    $link        = ! empty( $instance['link'] )        ? $instance['link']        : '#';
+    $new_tab     = ! empty( $instance['new_tab'] );
+
+    $target = $new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
+    ?>
+    <a href="<?php echo esc_url( $link ); ?>"<?php echo $target; ?> class="quarter lite-card">
+      <h3><?php echo esc_html( $heading ); ?></h3>
+      <div class="ghost-button"><?php echo esc_html( $button_text ); ?></div>
+    </a>
+    <?php
+  }
+
+  public function form( $instance ) {
+    $heading     = isset( $instance['heading'] )     ? $instance['heading']     : '';
+    $button_text = isset( $instance['button_text'] ) ? $instance['button_text'] : '';
+    $link        = isset( $instance['link'] )        ? $instance['link']        : '';
+    $new_tab     = isset( $instance['new_tab'] )     ? (bool) $instance['new_tab'] : false;
+    ?>
+    <p>
+      <label for="<?php echo esc_attr( $this->get_field_id( 'heading' ) ); ?>"><?php esc_html_e( 'Heading:', 'ivet360' ); ?></label>
+      <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'heading' ) ); ?>"
+             name="<?php echo esc_attr( $this->get_field_name( 'heading' ) ); ?>"
+             type="text" value="<?php echo esc_attr( $heading ); ?>">
+    </p>
+    <p>
+      <label for="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:', 'ivet360' ); ?></label>
+      <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>"
+             name="<?php echo esc_attr( $this->get_field_name( 'button_text' ) ); ?>"
+             type="text" value="<?php echo esc_attr( $button_text ); ?>">
+    </p>
+    <p>
+      <label for="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"><?php esc_html_e( 'Link URL:', 'ivet360' ); ?></label>
+      <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"
+             name="<?php echo esc_attr( $this->get_field_name( 'link' ) ); ?>"
+             type="text" value="<?php echo esc_attr( $link ); ?>">
+    </p>
+    <p>
+      <input id="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"
+             name="<?php echo esc_attr( $this->get_field_name( 'new_tab' ) ); ?>"
+             type="checkbox" value="1" <?php checked( $new_tab ); ?>>
+      <label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php esc_html_e( 'Open in new tab', 'ivet360' ); ?></label>
+    </p>
+    <?php
+  }
+
+  public function update( $new_instance, $old_instance ) {
+    $instance                = array();
+    $instance['heading']     = sanitize_text_field( $new_instance['heading'] );
+    $instance['button_text'] = sanitize_text_field( $new_instance['button_text'] );
+    $instance['link']        = esc_url_raw( $new_instance['link'] );
+    $instance['new_tab']     = ! empty( $new_instance['new_tab'] ) ? 1 : 0;
+    return $instance;
+  }
+}
+add_action( 'widgets_init', function() {
+  register_widget( 'Footer_Card_Widget' );
+} );
 
 function blankslate_pingback_header() {
   if ( is_singular() && pings_open() ) {

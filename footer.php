@@ -341,22 +341,10 @@ if (
     <?php } ?>
     <?php echo do_shortcode('[gravityform id="1" ajax="true"]'); ?>
     <div class="inner-wrapper footer-cards-ctn">
-        <a href="/contact/" class="quarter lite-card ">
-            <h3>Hours & Contact</h3>
-            <div class="ghost-button">Contact Us</div>
-        </a>
-        <a href="tel:<?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?>" class="quarter lite-card ">
-            <h3>Urgent Care Available</h3>
-            <div class="ghost-button"><?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?></div>
-        </a>
-        <a href="[PHARMACY LINK]" target="_blank" class="quarter lite-card ">
-            <h3>Online Pharmacy</h3>
-            <div class="ghost-button">Order Now</div>
-        </a>
-        <a href="/client-forms/" class="quarter lite-card ">
-            <h3>New Client Forms</h3>
-            <div class="ghost-button">View Forms</div>
-        </a>
+        <?php dynamic_sidebar( 'footer-one' ); ?>
+        <?php dynamic_sidebar( 'footer-two' ); ?>
+        <?php dynamic_sidebar( 'footer-three' ); ?>
+        <?php dynamic_sidebar( 'footer-four' ); ?>
     </div>
     <span class="visit-cta">Visit [HOSPITAL NAME] at <a href="/contact/">[ADDRESS]</a>.</span>
 </footer>
