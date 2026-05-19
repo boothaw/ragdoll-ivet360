@@ -35,9 +35,9 @@
                     <div class="nav-cta">
                         <div class="nav-cta-inner">
                             <?php $url = find_url(564,'/cityname-statecode-veterinary-appointment/'); ?>
-                            <a class="ghost-button" href="tel:<?php the_author_meta( 'phone' )?>"><i
-                                    style="transform: scaleX(-1);"
-                                    class="fas fa-phone"></i><span><?php the_author_meta( 'phone' )?></span></a>
+                            <a class="ghost-button" href="tel:<?php the_author_meta( 'phone' )?>">
+                                <i style="transform: scaleX(-1);" class="fas fa-phone"></i>
+                                <span><?php the_author_meta( 'phone' )?></span></a>
                             <a class="dark-button" href="<?php echo $url ?>">
                                 Book Now</a>
                         </div>
@@ -53,11 +53,5 @@
                 )
                 ); ?>
             </nav>
-            <!--<div id="header-social-box">
-        <a class="header-social-links" href="#" target="_blank" rel="noopener" aria-label="Facebook logo"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-        <a class="header-social-links" href="#" target="_blank" rel="noopener" aria-label="Instagram logo"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-        <a class="header-social-links" href="#" target="_blank" rel="noopener" aria-label="Google logo"><i class="fab fa-google" aria-hidden="true"></i></a>
-        <a class="header-social-links" href="#" target="_blank" rel="noopener" aria-label="Nextdoor icon"><i style="transform: scaleX(-1)" class="fas fa-home" aria-hidden="true"></i></a>
-      </div>-->
         </header>
         <div id="container">

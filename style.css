@@ -3589,11 +3589,15 @@ body:not(.home) .copyright-text {
         display: none;
       }
       .ghost-button {
-        padding: 10px;
-        font-size: 20px;
+        padding: 6px 10px;
 
-        & span {
-          display: none;
+        .btn-text-top {
+          font-size: 0; /* hide text characters */
+
+          & i {
+            font-size: 16px; /* but keep the icon visible at the right size */
+            display: inline-block;
+          }
         }
       }
     }
