@@ -2,7 +2,7 @@
     <div
         class="inner-header <?php if ( has_post_thumbnail() ) { ?> has-thumbnail <?php } else { ?> no-thumbnail <?php } ?>">
         <div class="entry-title">
-            <h1 class="baseline"><?php echo get_the_title(); ?></h1>
+            <h1 class="baseline"><?php $desc = get_field('descriptive_title'); echo $desc ? esc_html($desc) : get_the_title(); ?></h1>
             <?php if ( has_excerpt()) {
                 echo '<p class="baseline">' . get_the_excerpt() . '</p>' ?>
             <?php } ?>
