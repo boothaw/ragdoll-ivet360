@@ -146,11 +146,11 @@ class Footer_Card_Widget extends WP_Widget {
 
     $target = $new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
     ?>
-    <a href="<?php echo esc_url( $link ); ?>"<?php echo $target; ?> class="quarter lite-card">
-      <h3><?php echo esc_html( $heading ); ?></h3>
-      <div class="ghost-button"><?php echo esc_html( $button_text ); ?></div>
-    </a>
-    <?php
+<a href="<?php echo esc_url( $link ); ?>" <?php echo $target; ?> class="quarter lite-card">
+    <h3><?php echo esc_html( $heading ); ?></h3>
+    <div class="ghost-button"><?php echo esc_html( $button_text ); ?></div>
+</a>
+<?php
   }
 
   public function form( $instance ) {
@@ -159,31 +159,35 @@ class Footer_Card_Widget extends WP_Widget {
     $link        = isset( $instance['link'] )        ? $instance['link']        : '';
     $new_tab     = isset( $instance['new_tab'] )     ? (bool) $instance['new_tab'] : false;
     ?>
-    <p>
-      <label for="<?php echo esc_attr( $this->get_field_id( 'heading' ) ); ?>"><?php esc_html_e( 'Heading:', 'ivet360' ); ?></label>
-      <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'heading' ) ); ?>"
-             name="<?php echo esc_attr( $this->get_field_name( 'heading' ) ); ?>"
-             type="text" value="<?php echo esc_attr( $heading ); ?>">
-    </p>
-    <p>
-      <label for="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:', 'ivet360' ); ?></label>
-      <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>"
-             name="<?php echo esc_attr( $this->get_field_name( 'button_text' ) ); ?>"
-             type="text" value="<?php echo esc_attr( $button_text ); ?>">
-    </p>
-    <p>
-      <label for="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"><?php esc_html_e( 'Link URL:', 'ivet360' ); ?></label>
-      <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"
-             name="<?php echo esc_attr( $this->get_field_name( 'link' ) ); ?>"
-             type="text" value="<?php echo esc_attr( $link ); ?>">
-    </p>
-    <p>
-      <input id="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"
-             name="<?php echo esc_attr( $this->get_field_name( 'new_tab' ) ); ?>"
-             type="checkbox" value="1" <?php checked( $new_tab ); ?>>
-      <label for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php esc_html_e( 'Open in new tab', 'ivet360' ); ?></label>
-    </p>
-    <?php
+<p>
+    <label
+        for="<?php echo esc_attr( $this->get_field_id( 'heading' ) ); ?>"><?php esc_html_e( 'Heading:', 'ivet360' ); ?></label>
+    <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'heading' ) ); ?>"
+        name="<?php echo esc_attr( $this->get_field_name( 'heading' ) ); ?>" type="text"
+        value="<?php echo esc_attr( $heading ); ?>">
+</p>
+<p>
+    <label
+        for="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:', 'ivet360' ); ?></label>
+    <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>"
+        name="<?php echo esc_attr( $this->get_field_name( 'button_text' ) ); ?>" type="text"
+        value="<?php echo esc_attr( $button_text ); ?>">
+</p>
+<p>
+    <label
+        for="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"><?php esc_html_e( 'Link URL:', 'ivet360' ); ?></label>
+    <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"
+        name="<?php echo esc_attr( $this->get_field_name( 'link' ) ); ?>" type="text"
+        value="<?php echo esc_attr( $link ); ?>">
+</p>
+<p>
+    <input id="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"
+        name="<?php echo esc_attr( $this->get_field_name( 'new_tab' ) ); ?>" type="checkbox" value="1"
+        <?php checked( $new_tab ); ?>>
+    <label
+        for="<?php echo esc_attr( $this->get_field_id( 'new_tab' ) ); ?>"><?php esc_html_e( 'Open in new tab', 'ivet360' ); ?></label>
+</p>
+<?php
   }
 
   public function update( $new_instance, $old_instance ) {
@@ -1395,7 +1399,7 @@ function random_testimonial($atts) {
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </span>
                 <div>
-                    <?php echo preg_replace('/<p[^>]*>(\s|&nbsp;)*<\/p>/i', '', $raw_content); ?>
+                    <?php echo preg_replace('/<p[^>]*>(\s|&nbsp;)*<\/p>/i', '', $formatted_review); ?>
                 </div>
                 <p class="testimonial-title"><?php echo esc_html($title); ?></p>
             </div>
@@ -1439,10 +1443,10 @@ function testimonial_page($atts) {
                         $title = get_the_title();
                 ?>
         <div class="testimonial-card">
-            <?php echo $review ?>
-            <p class="testimonial-title">-<?php echo $title ?></p>
+            <?php echo wp_kses_post($review); ?>
+            <p class="testimonial-title">-<?php echo esc_html($title); ?></p>
         </div>
-        <?php endwhile; endif; ?>
+        <?php endwhile; wp_reset_postdata(); endif; ?>
     </div>
 </section>
 <?php
