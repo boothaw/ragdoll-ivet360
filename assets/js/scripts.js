@@ -45,6 +45,16 @@ if (typeof gsap !== "undefined") {
   if (elsToHide.length) gsap.set(elsToHide, { opacity: 0, y: 40 });
 }
 
+// ─── STICKY HEADER ───────────────────────────────────────────────────────────
+(function () {
+  const stickyHeader = document.getElementById("sticky-header");
+  if (!stickyHeader) return;
+
+  window.addEventListener("scroll", () => {
+    stickyHeader.classList.toggle("slide-down", window.pageYOffset >= 200);
+  });
+})();
+
 // ─── HAMBURGER MENU ──────────────────────────────────────────────────────────
 function hamburgerMenu() {
   const hamburger = document.getElementById("hamburger");

@@ -2,14 +2,15 @@
     <div
         class="inner-header <?php if ( has_post_thumbnail() ) { ?> has-thumbnail <?php } else { ?> no-thumbnail <?php } ?>">
         <div class="entry-title">
-            <h1 class="baseline"><?php $desc = get_field('descriptive_title'); echo $desc ? esc_html($desc) : get_the_title(); ?></h1>
+            <h1 class="baseline">
+                <?php $desc = get_field('descriptive_title'); echo $desc ? esc_html($desc) : get_the_title(); ?></h1>
             <?php if ( has_excerpt()) {
                 echo '<p class="baseline">' . get_the_excerpt() . '</p>' ?>
             <?php } ?>
-            <?php if ( is_front_page() || ( is_singular('post') && has_category('services') ) ) { ?>
+            <?php if ( is_front_page() || is_page_template('services-page.php') || ( is_singular('post') && ( has_category('services') || has_category('species') ) ) ) { ?>
             <div class="buttons-ctn">
-                <?php $url = find_url(564,'/cityname-statecode-veterinary-appointment/'); ?>
-                <a class="dark-button" href="<?php echo $url ?>">Book Now</a>
+                <?php $url = 'https://vet.digitail.io/clinics/exotic-vet-care'; ?>
+                <a class="dark-button" href="<?php echo $url ?>" target="_blank" rel="noopener noreferrer">Book Now 24/7</a>
                 <a class="ghost-button"
                     href="tel:<?php the_author_meta( 'phone' )?>"><?php the_author_meta( 'phone' )?></a>
             </div>

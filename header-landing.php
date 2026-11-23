@@ -5,6 +5,11 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://use.typekit.net/spv6zch.css">
+	<link rel="preload" href="https://use.typekit.net/ieq7wgm.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://use.typekit.net/ieq7wgm.css">
+    </noscript>
     <?php wp_head(); ?>
 </head>
 

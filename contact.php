@@ -19,7 +19,7 @@ get_header(); ?>
                     <?php echo do_shortcode('[business_hours]') ?>
                 </div>
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.2598617760495!2d-122.6753!3d45.524976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5495732d5ad4de19%3A0x6e8ef0690debfad0!2siVET360!5e0!3m2!1sen!2sus!4v1777401608198!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.29813823482!2d-79.8714723!3d32.810864599999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fe71ac55ad8bd1%3A0x3d1fd4e0fdc88bfb!2sExotic%20Vet%20Care!5e0!3m2!1sen!2sus!4v1789660222843!5m2!1sen!2sus"
                     width="100%" height="370" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>

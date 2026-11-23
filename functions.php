@@ -148,7 +148,7 @@ class Footer_Card_Widget extends WP_Widget {
     ?>
 <a href="<?php echo esc_url( $link ); ?>" <?php echo $target; ?> class="quarter lite-card">
     <h3><?php echo esc_html( $heading ); ?></h3>
-    <div class="ghost-button"><?php echo esc_html( $button_text ); ?></div>
+    <div class="dark-button"><?php echo esc_html( $button_text ); ?></div>
 </a>
 <?php
   }
@@ -282,7 +282,7 @@ function hero_section($atts) {
 	ob_start();
 	$data = shortcode_atts(array(
 		'video_on_off' => 'on',
-        'title_one' => 'Premier Pet Care<br>in [CITY NAME], [STATE CODE]',
+        'title_one' => 'Premier Pet Care<br>in Mt Pleasant, SC',
         'title_two' => 'for Your Best Friend'
 	),$atts);
 	?>
@@ -291,9 +291,9 @@ function hero_section($atts) {
     <?php if ($data['video_on_off'] == 'on') { ?>
     <div id="video-text">
         <h1 class="baseline"><?php echo $data['title_one'] ?></h1>
-        <?php $url = find_url(564,'/cityname-statecode-veterinary-appointment/'); ?>
+        <?php $url = 'https://vet.digitail.io/clinics/exotic-vet-care'; ?>
         <div class="btns-ctn">
-            <a href="<?php echo $url ?>" class="button-container">
+            <a href="<?php echo $url ?>" target="_blank" rel="noopener noreferrer" class="button-container">
                 <div class="blue-button">
                     Book Appointment
                 </div>
@@ -328,22 +328,23 @@ function three_callouts($atts) {
 	),$atts);
 	?>
 <div id="three-callouts">
-    <?php $url = find_url(567,'/veterinarian-cityname-statecode/'); ?>
+    <?php $url = find_url(567,'/veterinarian-mt-pleasant-sc/'); ?>
     <a href="<?php echo $url ?>" style="background-image: url('/wp-content/uploads/2024/10/Featured-Team.png')"
         class="callout">
         <div class="callout-text">
             <h2 class="baseline">Meet<br>Our Team</h2>
         </div>
     </a>
-    <!-- <?php $url = find_url(41,'/cityname-statecode-veterinary-services/'); ?> -->
-    <a href="#" style="background-image: url('/wp-content/uploads/2024/10/Featured-Pharmacy.png')" class="callout">
+    <!-- <?php $url = find_url(41,'/mt-pleasant-sc-veterinary-services/'); ?> -->
+    <a href="https://exoticvetcare.myvetstoreonline.pharmacy/shop"
+        style="background-image: url('/wp-content/uploads/2024/10/Featured-Pharmacy.png')" class="callout">
         <div class="callout-text">
             <h2 class="baseline">Online<br>Pharmacy</h2>
         </div>
     </a>
-    <?php $url = find_url(564,'/cityname-statecode-veterinary-appointment/'); ?>
-    <a href="<?php echo $url ?>" style="background-image: url('/wp-content/uploads/2024/10/Featured-Careers.png')"
-        class="callout">
+    <?php $url = 'https://vet.digitail.io/clinics/exotic-vet-care'; ?>
+    <a href="<?php echo $url ?>" target="_blank" rel="noopener noreferrer"
+        style="background-image: url('/wp-content/uploads/2024/10/Featured-Careers.png')" class="callout">
         <div class="callout-text">
             <h2 class="baseline">Schedule<br>Your Visit</h2>
         </div>
@@ -387,7 +388,7 @@ function homepage_services() {
                             fill="white" />
                         <path
                             d="M8.74087 12.3773C9.16542 11.7272 9.54003 11.077 9.96459 10.4519C11.7627 7.72642 13.9604 5.401 16.5577 3.42563C18.1311 2.20041 19.8293 1.15022 21.6274 0.25005C22.3767 -0.125019 23.0759 -0.025001 23.7752 0.325063C24.0749 0.475091 24.0749 0.800151 23.7752 1.02519C22.6514 1.90035 21.5026 2.7255 20.4537 3.67568C17.9812 5.92609 16.0582 8.60159 14.4849 11.5271C13.5608 13.2524 12.7617 15.0528 12.0374 16.8781C11.7377 17.6532 11.1633 18.2034 10.3891 18.5284C9.78977 18.7785 9.21537 19.0035 8.616 19.2535C7.76688 19.6036 7.1675 19.3786 6.79289 18.5784C5.51922 15.9029 3.72109 13.6275 1.57333 11.5771C1.1238 11.1521 0.674268 10.752 0.224736 10.3519C-0.174847 9.97684 -0.0749515 9.42674 0.474476 9.25171C1.92297 8.77662 3.37146 8.32654 4.81995 7.85145C5.29446 7.70142 5.64409 7.85145 5.96875 8.20151C6.99269 9.40173 7.8418 10.702 8.56605 12.1022C8.616 12.2022 8.66594 12.2773 8.74087 12.3773Z"
-                            fill="#ECFBFE" />
+                            fill="#94D6DC" />
                     </g>
                     <defs>
                         <clipPath id="clip0_2150_276">
@@ -399,7 +400,7 @@ function homepage_services() {
             </a>
             <?php endwhile; endif; ?>
         </div>
-        <?php $url = find_url(41,'/cityname-statecode-veterinary-services/'); ?>
+        <?php $url = find_url(41,'/mt-pleasant-sc-veterinary-services/'); ?>
         <a href="<?php echo $url ?>" class="button-container full-width-button">
             <div class="lite-button">
                 View All Services
@@ -572,7 +573,7 @@ function team_section() {
                 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                 cillum dolore eu fugiat nulla pariatur.</p>
-            <?php $url = find_url(567,'/veterinarian-cityname-statecode/'); ?>
+            <?php $url = find_url(567,'/veterinarian-mt-pleasant-sc/'); ?>
             <a href="<?php echo $url ?>" class="button-container">
                 <div class="blue-button">
                     Get to know our team
@@ -760,7 +761,7 @@ function openings_card($atts) {
 <div class="service-call-card join-team-card">
     <h3 class="center-title underlined baseline">Learn More About Our Team</h3>
     <div class="appointment-box">
-        <a href="/about-hospitalname-statecode/" class="button-container">
+        <a href="/about-exotic-vet-care-sc/" class="button-container">
             <div class="blue-button">
                 About Us
             </div>
@@ -790,8 +791,8 @@ function appointment_area($atts) {
                         Call <?php the_author_meta( 'phone' )?>
                     </div>
                 </a>
-                <?php $url = find_url(564,'/cityname-statecode-veterinary-appointment/'); ?>
-                <a href="<?php echo $url ?>" class="button-container">
+                <?php $url = 'https://vet.digitail.io/clinics/exotic-vet-care'; ?>
+                <a href="<?php echo $url ?>" target="_blank" rel="noopener noreferrer" class="button-container">
                     <div class="lite-button">
                         Book An Appointment
                     </div>
@@ -941,24 +942,450 @@ function service_list($atts) {
                 <?php echo $title ?>
             </h2>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="12" fill="#046077" />
+                <rect width="40" height="40" rx="12" fill="#002a4e" />
                 <path
                     d="M24.1716 18.9999L18.8076 13.6359L20.2218 12.2217L28 19.9999L20.2218 27.778L18.8076 26.3638L24.1716 20.9999H12V18.9999H24.1716Z"
-                    fill="#ECFBFE" />
+                    fill="#fff" />
             </svg>
         </a>
         <?php endwhile; endif ?>
-    </div>
-    <div class="buttons-ctn">
-        <?php $url = find_url(564,'/cityname-statecode-veterinary-appointment/'); ?>
-        <a class="dark-button" href="<?php echo $url ?>">Book Now</a>
-        <a class="ghost-button" href="tel:<?php the_author_meta( 'phone' )?>"><?php the_author_meta( 'phone' )?></a>
     </div>
 </div>
 <?php
 	return ob_get_clean();
 }
 add_shortcode('service_list','service_list');
+
+function species_list($atts) {
+	ob_start();
+    $data = shortcode_atts(array(
+		'tag' => '',
+	),$atts);
+	?>
+<div class="services-card species-card" id="<?php echo $data['tag'] ?>">
+
+    <div class="services-list species-list">
+        <?php
+				$args = array(
+					'category_name' => 'Species',
+					'posts_per_page' => -1,
+                    'tag' => $data['tag'],
+                    'orderby' => 'title',
+		            'order' => 'ASC'
+				);
+				$loop = new WP_Query($args);
+				if ($loop->have_posts()) : while ($loop->have_posts()) : $loop->the_post();
+				$id = get_the_ID();
+				$img = get_the_post_thumbnail_url($id);
+				$link = get_permalink();
+				$title = get_the_title();
+				?>
+        <a href="<?php echo $link ?>" class="service-item species-item" id="species-<?php echo $id ?>">
+            <div class="species-icon">
+                <?php $icon_url = function_exists('get_field') && get_field('species_icon', $id) ? wp_get_attachment_image_url(get_field('species_icon', $id), 'full') : ''; ?>
+                <?php if ($icon_url) { ?>
+                <img src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true" />
+                <?php } ?>
+            </div>
+            <h2>
+                <?php echo $title ?>
+            </h2>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="12" fill="#002a4e" />
+                <path
+                    d="M24.1716 18.9999L18.8076 13.6359L20.2218 12.2217L28 19.9999L20.2218 27.778L18.8076 26.3638L24.1716 20.9999H12V18.9999H24.1716Z"
+                    fill="#fff" />
+            </svg>
+        </a>
+        <?php endwhile; endif ?>
+    </div>
+</div>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('species_list','species_list');
+
+
+function blog_list($atts) {
+	ob_start();
+    $data = shortcode_atts(array(
+		'tag' => '',
+	),$atts);
+	?>
+<div class="services-card blog-card" id="<?php echo $data['tag'] ?>">
+
+    <div class="services-list blog-list">
+        <?php
+				$args = array(
+					'category_name' => 'Blog',
+					'posts_per_page' => -1,
+                    'tag' => $data['tag'],
+		            'orderby' => 'date',
+		            'order' => 'DESC'
+				);
+				$loop = new WP_Query($args);
+				if ($loop->have_posts()) : while ($loop->have_posts()) : $loop->the_post();
+				$id = get_the_ID();
+				$img = get_the_post_thumbnail_url($id);
+				$link = get_permalink();
+				$title = get_the_title();
+				?>
+        <a href="<?php echo $link ?>" class="service-item" id="service-<?php echo $id ?>">
+            <h2>
+                <?php echo $title ?>
+            </h2>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="12" fill="#002a4e" />
+                <path
+                    d="M24.1716 18.9999L18.8076 13.6359L20.2218 12.2217L28 19.9999L20.2218 27.778L18.8076 26.3638L24.1716 20.9999H12V18.9999H24.1716Z"
+                    fill="#fff" />
+            </svg>
+        </a>
+        <?php endwhile; endif ?>
+    </div>
+</div>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('blog_list','blog_list');
+
+
+function secondary_forms_list($atts) {
+	ob_start();
+    $data = shortcode_atts(array(
+		'tag' => '',
+		'parent' => 0,
+	),$atts);
+	$parent_id = $data['parent'] ? (int) $data['parent'] : get_the_ID();
+	?>
+<div class="services-card species-card forms-card" id="<?php echo $data['tag'] ?>">
+
+    <div class="services-list species-list forms-list">
+        <?php
+				$args = array(
+					'post_type' => 'page',
+					'post_parent' => $parent_id,
+					'posts_per_page' => -1,
+					'orderby' => array('menu_order' => 'ASC', 'title' => 'ASC'),
+					'meta_query' => array(
+						'relation' => 'AND',
+						array('key' => 'species_icon', 'compare' => 'EXISTS'),
+						array('key' => 'species_icon', 'value' => '', 'compare' => '!='),
+					),
+				);
+				$loop = new WP_Query($args);
+				if ($loop->have_posts()) : while ($loop->have_posts()) : $loop->the_post();
+				$id = get_the_ID();
+				$img = get_the_post_thumbnail_url($id);
+				$link = get_permalink();
+				$title = get_the_title();
+				?>
+        <a href="<?php echo $link ?>" class="service-item species-item" id="species-<?php echo $id ?>">
+            <div class="species-icon">
+                <?php $icon_url = function_exists('get_field') && get_field('species_icon', $id) ? wp_get_attachment_image_url(get_field('species_icon', $id), 'full') : ''; ?>
+                <?php if ($icon_url) { ?>
+                <img src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true" />
+                <?php } ?>
+            </div>
+            <h2>
+                <?php echo $title ?>
+            </h2>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="12" fill="#002a4e" />
+                <path
+                    d="M24.1716 18.9999L18.8076 13.6359L20.2218 12.2217L28 19.9999L20.2218 27.778L18.8076 26.3638L24.1716 20.9999H12V18.9999H24.1716Z"
+                    fill="#fff" />
+            </svg>
+        </a>
+        <?php endwhile; endif; wp_reset_postdata(); ?>
+    </div>
+</div>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('secondary_forms_list','secondary_forms_list');
+
+// ===== Container Block =====
+
+function container_block_register() {
+    register_block_type('container-block/main', array(
+        'editor_script'    => 'container-block-editor',
+        'editor_style'     => 'container-block-editor-style',
+        'render_callback'  => 'container_block_render',
+        'attributes'       => array(
+            'backgroundPreset' => array(
+                'type'    => 'string',
+                'default' => '',
+            ),
+            'widthPreset' => array(
+                'type'    => 'string',
+                'default' => '',
+            ),
+            'paddingTB' => array(
+                'type'    => 'boolean',
+                'default' => false,
+            ),
+            'paddingLR' => array(
+                'type'    => 'boolean',
+                'default' => false,
+            ),
+            'containerCard' => array(
+                'type'    => 'boolean',
+                'default' => false,
+            ),
+            'backgroundIcon' => array(
+                'type'    => 'boolean',
+                'default' => false,
+            ),
+            'anchor' => array(
+                'type'    => 'string',
+                'default' => '',
+            ),
+        ),
+        'supports'         => array(
+            'align'           => array('wide', 'full'),
+            'html'            => false,
+            'anchor'          => true,
+            'customClassName' => true,
+        ),
+    ));
+}
+add_action('init', 'container_block_register');
+
+function container_block_enqueue_editor_assets() {
+    wp_register_style('container-block-editor-style', false);
+    wp_add_inline_style('container-block-editor-style', '
+        .container-block-wrapper {
+            border: 1px dashed #ccc;
+            padding: 16px;
+            min-height: 48px;
+        }
+    ');
+
+    wp_register_script(
+        'container-block-editor',
+        '',
+        array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components'),
+        '1.0.0',
+        true
+    );
+
+    wp_add_inline_script('container-block-editor', '
+        (function(blocks, element, blockEditor, components) {
+            var el = element.createElement;
+            var Fragment = element.Fragment;
+            var InnerBlocks = blockEditor.InnerBlocks;
+            var BlockControls = blockEditor.BlockControls;
+            var ToolbarGroup = components.ToolbarGroup;
+            var ToolbarButton = components.ToolbarButton;
+            var DropdownMenu = components.DropdownMenu;
+
+            var PRESETS = [
+                { key: "lite", label: "Lite", css: "var(--lite)", cssClass: "bg-lite" },
+                { key: "medium", label: "Medium", css: "var(--medium)", cssClass: "bg-medium" },
+                { key: "dark", label: "Dark", css: "var(--dark)", cssClass: "bg-dark" },
+                { key: "midnight", label: "Midnight", css: "var(--midnight)", cssClass: "bg-midnight" }
+            ];
+
+            function getPreset(key) {
+                for (var i = 0; i < PRESETS.length; i++) {
+                    if (PRESETS[i].key === key) return PRESETS[i];
+                }
+                return null;
+            }
+
+            blocks.registerBlockType("container-block/main", {
+                title: "Container",
+                icon: "screenoptions",
+                category: "design",
+                description: "A plain div wrapper. Put anything inside it.",
+
+                edit: function(props) {
+                    var bgPreset = props.attributes.backgroundPreset;
+                    var widthPreset = props.attributes.widthPreset;
+                    var paddingTB = props.attributes.paddingTB;
+                    var paddingLR = props.attributes.paddingLR;
+                    var containerCard = props.attributes.containerCard;
+                    var backgroundIcon = props.attributes.backgroundIcon;
+                    var setAttributes = props.setAttributes;
+
+                    var WIDTH_OPTIONS = [
+                        { key: "full-width", label: "Full Width", cssClass: "full-width-section" },
+                        { key: "mid-width", label: "Mid Width", cssClass: "mid-width" }
+                    ];
+
+                    var wrapperStyle = {};
+                    var wrapperClass = "container-block-wrapper";
+                    var preset = getPreset(bgPreset);
+                    if (preset) {
+                        wrapperStyle.background = preset.css;
+                        wrapperClass += " " + preset.cssClass;
+                    }
+                    for (var w = 0; w < WIDTH_OPTIONS.length; w++) {
+                        if (WIDTH_OPTIONS[w].key === widthPreset) {
+                            wrapperClass += " " + WIDTH_OPTIONS[w].cssClass;
+                            break;
+                        }
+                    }
+                    if (paddingTB) wrapperClass += " padding-tb";
+                    if (paddingLR) wrapperClass += " padding-lr";
+                    if (containerCard) wrapperClass += " container-card";
+                    if (backgroundIcon) wrapperClass += " has-background-icon";
+
+                    var presetControls = PRESETS.map(function(p) {
+                        return {
+                            title: p.label,
+                            isActive: bgPreset === p.key,
+                            onClick: function() {
+                                setAttributes({ backgroundPreset: bgPreset === p.key ? "" : p.key });
+                            }
+                        };
+                    });
+
+                    var clearControl = {
+                        title: "None",
+                        isActive: !bgPreset,
+                        onClick: function() {
+                            setAttributes({ backgroundPreset: "" });
+                        }
+                    };
+
+                    return el(
+                        Fragment,
+                        null,
+                        el(
+                            BlockControls,
+                            null,
+                            el(
+                                ToolbarGroup,
+                                null,
+                                el(DropdownMenu, {
+                                    icon: "art",
+                                    label: "Background Color",
+                                    controls: [ presetControls, [ clearControl ] ]
+                                }),
+                                el(ToolbarButton, {
+                                    icon: "arrow-up-alt",
+                                    label: "Padding Top/Bottom",
+                                    isPressed: paddingTB,
+                                    onClick: function() { setAttributes({ paddingTB: !paddingTB }); }
+                                }),
+                                el(ToolbarButton, {
+                                    icon: "arrow-right-alt",
+                                    label: "Padding Left/Right",
+                                    isPressed: paddingLR,
+                                    onClick: function() { setAttributes({ paddingLR: !paddingLR }); }
+                                }),
+                                el(ToolbarButton, {
+                                    icon: "tablet",
+                                    label: "Container Card",
+                                    isPressed: containerCard,
+                                    onClick: function() { setAttributes({ containerCard: !containerCard }); }
+                                }),
+                                el(ToolbarButton, {
+                                    icon: "format-image",
+                                    label: "Use Post Species Icon as Background",
+                                    isPressed: backgroundIcon,
+                                    onClick: function() { setAttributes({ backgroundIcon: !backgroundIcon }); }
+                                }),
+                                el(DropdownMenu, {
+                                    icon: "align-full-width",
+                                    label: "Width",
+                                    controls: [
+                                        WIDTH_OPTIONS.map(function(wo) {
+                                            return {
+                                                title: wo.label,
+                                                isActive: widthPreset === wo.key,
+                                                onClick: function() {
+                                                    setAttributes({ widthPreset: widthPreset === wo.key ? "" : wo.key });
+                                                }
+                                            };
+                                        }),
+                                        [{
+                                            title: "None",
+                                            isActive: !widthPreset,
+                                            onClick: function() {
+                                                setAttributes({ widthPreset: "" });
+                                            }
+                                        }]
+                                    ]
+                                })
+                            )
+                        ),
+                        el(
+                            "div",
+                            { className: wrapperClass, style: wrapperStyle },
+                            el(InnerBlocks, {
+                                templateLock: false,
+                                renderAppender: function() {
+                                    return el(InnerBlocks.ButtonBlockAppender);
+                                }
+                            })
+                        )
+                    );
+                },
+
+                save: function() {
+                    return el(InnerBlocks.Content);
+                }
+            });
+        })(
+            window.wp.blocks,
+            window.wp.element,
+            window.wp.blockEditor,
+            window.wp.components
+        );
+    ');
+}
+add_action('enqueue_block_editor_assets', 'container_block_enqueue_editor_assets');
+
+function container_block_render($attributes, $content) {
+    $class_name = isset($attributes['className']) ? ' ' . esc_attr($attributes['className']) : '';
+    $anchor = isset($attributes['anchor']) ? ' id="' . esc_attr($attributes['anchor']) . '"' : '';
+
+    $style = '';
+    $bg_class = '';
+    if (!empty($attributes['backgroundPreset'])) {
+        $presets = array(
+            'lite'     => array( 'css' => 'background: var(--lite);', 'class' => 'bg-lite' ),
+            'medium'   => array( 'css' => 'background: var(--medium);', 'class' => 'bg-medium' ),
+            'dark'     => array( 'css' => 'background: var(--dark);', 'class' => 'bg-dark' ),
+            'midnight' => array( 'css' => 'background: var(--midnight);', 'class' => 'bg-midnight' ),
+        );
+        if (isset($presets[$attributes['backgroundPreset']])) {
+            $style = ' style="' . esc_attr($presets[$attributes['backgroundPreset']]['css']) . '"';
+            $bg_class = ' ' . esc_attr($presets[$attributes['backgroundPreset']]['class']);
+        }
+    }
+
+    $width_class = '';
+    if (!empty($attributes['widthPreset'])) {
+        $width_map = array(
+            'full-width' => 'full-width-section',
+            'mid-width'  => 'mid-width',
+        );
+        if (isset($width_map[$attributes['widthPreset']])) {
+            $width_class = ' ' . esc_attr($width_map[$attributes['widthPreset']]);
+        }
+    }
+
+    $pad_tb = !empty($attributes['paddingTB']) ? ' padding-tb' : '';
+    $pad_lr = !empty($attributes['paddingLR']) ? ' padding-lr' : '';
+    $card_class = !empty($attributes['containerCard']) ? ' container-card' : '';
+
+    $icon_class = '';
+    if (!empty($attributes['backgroundIcon']) && function_exists('get_field')) {
+        $icon_id  = get_field('species_icon', get_the_ID());
+        $icon_url = $icon_id ? wp_get_attachment_image_url($icon_id, 'full') : '';
+        if ($icon_url) {
+            $icon_class = ' has-background-icon';
+            $style_val  = $style ? rtrim(substr($style, 8, -1)) : '';
+            $style      = ' style="' . esc_attr($style_val . ' --bg-icon-url: url(' . esc_url($icon_url) . ');') . '"';
+        }
+    }
+
+    return '<div class="container-block' . $class_name . $bg_class . $width_class . $pad_tb . $pad_lr . $card_class . $icon_class . '"' . $anchor . $style . '>' . $content . '</div>';
+}
 
 function get_excerpt_if_set( $post_id = null ) {
     // Use current post if no ID is provided
@@ -985,15 +1412,15 @@ function row_link($atts) {
 	),$atts);
 	?>
 
-<a href="<?php echo $data['link'] ?>" class="service-item">
+<a href="<?php echo $data['link'] ?>" class="service-item form-row-link">
     <h2>
         <?php echo $data['title'] ?>
     </h2>
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="12" fill="#046077" />
+        <rect width="40" height="40" rx="12" fill="#002a4e" />
         <path
             d="M24.1716 18.9999L18.8076 13.6359L20.2218 12.2217L28 19.9999L20.2218 27.778L18.8076 26.3638L24.1716 20.9999H12V18.9999H24.1716Z"
-            fill="#ECFBFE" />
+            fill="#fff" />
     </svg>
 </a>
 <?php
@@ -1007,7 +1434,7 @@ function footer_call_section($atts) {
 		'link' => '#',
 		'icon' => 'fab fa-facebook-f',
 		'name' => 'Facebook',
-		'color' => '#03404f'
+		'color' => '#002A4E'
 	),$atts);
 	?>
 <section class="footer-callout">
@@ -1016,10 +1443,10 @@ function footer_call_section($atts) {
         <h2 class="baseline">Make an Appointment?</h2>
         <div class="footer-callout-wrapper">
             <p>
-                <i style="transform: scaleX(-1);" class="fas fa-phone"></i> <a href="tel:[PHONE NUMBER]">[PHONE
-                    NUMBER]</a>
+                <i style="transform: scaleX(-1);" class="fas fa-phone"></i> <a href="tel:(843) 216-8387">(843)
+                    216-8387</a>
             </p>
-            <a href="/contact-hospitalname-cityname-statecode/" class="blue-button">Book Now</a>
+            <a href="https://vet.digitail.io/clinics/exotic-vet-care" target="_blank" rel="noopener noreferrer" class="blue-button">Book Now</a>
         </div>
     </div>
 </section>
@@ -1031,7 +1458,7 @@ add_shortcode('footer_call_section','footer_call_section');
 function join_team_section($atts) {
 	ob_start();
 	$data = shortcode_atts(array(
-		'email' => '[EMAIL ADDRESS]'
+		'email' => 'contact@birdsandexotics.com'
 	),$atts);
 	?>
 <section class="footer-callout join-our-team">
@@ -1104,10 +1531,10 @@ function current_openings(){
                 <?php echo $title ?>
             </h2>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="12" fill="#046077" />
+                <rect width="40" height="40" rx="12" fill="#33647E" />
                 <path
                     d="M24.1716 18.9999L18.8076 13.6359L20.2218 12.2217L28 19.9999L20.2218 27.778L18.8076 26.3638L24.1716 20.9999H12V18.9999H24.1716Z"
-                    fill="#ECFBFE" />
+                    fill="#94D6DC" />
             </svg>
         </a>
         <?php endwhile; endif ?>
@@ -1207,7 +1634,7 @@ function rye() {
     <section class="rye-body">
         <div class="rye-body-container">
             <h2>Would you mind taking a moment to rate your
-                experience with [HOSPITAL NAME]?</h2>
+                experience with Exotic Vet Care?</h2>
             <p>It's always been our goal to see that you and your pet feel comfortable, welcome, and cared for at
                 our
                 hospital. We know your animal companions mean the world to you, which is why their health and
@@ -1318,7 +1745,7 @@ function testimonials_cards($atts) {
     <?php
         $args = array(
             'category_name' => 'Testimonials',
-            'posts_per_page' => 3
+            'posts_per_page' => -1
         );
         $posts_array = new WP_Query($args);
 
@@ -1375,8 +1802,7 @@ function random_testimonial($atts) {
         <?php
         $args = array(
             'category_name' => 'Testimonials',
-            'posts_per_page' => 1,
-            'orderby'        => 'rand',
+            'posts_per_page' => -1,
         );
         $posts_array = new WP_Query($args);
 
@@ -1455,7 +1881,7 @@ function testimonial_page($atts) {
 add_shortcode('testimonial_page','testimonial_page');
 
 function find_url($id, $default){
-	//$url = find_url(172,'/cityname-statecode-veterinary-appointment/');
+	//$url = find_url(172,'/mt-pleasant-sc-veterinary-appointment/');
 	$site_url = site_url();
 	if(isset($id)){
 		$page = get_post( $id );
@@ -1507,10 +1933,10 @@ function wrapRoadNameAndNumber($address) {
 function lp($atts) {
 	ob_start();
 	$data = shortcode_atts(array(
-		'tracking_line' => '[PHONE NUMBER]',
-		'appt_link' => '/make-appointment-ads/',
+		'tracking_line' => '(843) 216-8387',
+		'appt_link' => 'https://vet.digitail.io/clinics/exotic-vet-care',
 		'map_link' => 'https://maps.app.goo.gl/QBBZaRyUKsYtVBY17',
-		'address' => '[ADDRESS]',
+		'address' => '814 Johnnie Dodds Blvd A, Mt Pleasant, SC 29464',
 		'name' => get_bloginfo('name'),
 		'logo' => '/wp-content/uploads/2025/03/AVC-logo.svg',
 		'hero' => '/wp-content/uploads/2025/03/AVC-lp-hero-card.png',
@@ -1518,7 +1944,7 @@ function lp($atts) {
 		'services_img' => '/wp-content/uploads/2025/03/AVC-lp-services.png',
         'doctors_text' => "doctors combine advanced veterinary expertise with genuine compassion for every pet we see. When it comes to your pet's health, you deserve a team that treats your furry family members like their own. We believe in staying at the forefront of veterinary medicine through continuous learning and ongoing training, ensuring your pet receives the most current care available.",
         'doctors_text_two' => "are all accepting new clients - we look forward to building a lasting relationship with you and your beloved pets.",
-        'careteam_text' => "our dedicated team is the heart of our practice. From welcoming smiles at the front desk to gentle, attentive care in the exam room, our technicians, assistants, receptionists, and kennel staff share one goal: creating a warm, comfortable environment for you and your pet. Come meet the friendly faces behind [HOSPITAL NAME] and discover how our commitment to compassionate service makes all the difference."
+        'careteam_text' => "our dedicated team is the heart of our practice. From welcoming smiles at the front desk to gentle, attentive care in the exam room, our technicians, assistants, receptionists, and kennel staff share one goal: creating a warm, comfortable environment for you and your pet. Come meet the friendly faces behind Exotic Vet Care and discover how our commitment to compassionate service makes all the difference."
 	), $atts);
 	
 	$title = get_the_title();
@@ -1533,7 +1959,7 @@ function lp($atts) {
             <div class="fifty-percent">
                 <div class="logo-ctn">
                     <img class="lp-logo" src="<?php echo $data['logo'] ?>" alt="<?php echo $sitename ?>" />
-                    <a href="<?php echo $data['appt_link'] ?>" class="lp-btn">book now</a>
+                    <a href="<?php echo $data['appt_link'] ?>" target="_blank" rel="noopener noreferrer" class="lp-btn">book now</a>
                 </div>
                 <h1><?php echo $title?></h1>
                 <p><?php echo $excerpt ?></p>
@@ -1541,7 +1967,7 @@ function lp($atts) {
             <div class="fifty-percent">
                 <div class="hero-card">
                     <img class="<?php echo $modalToggle ?>" src="<?php echo $data['hero'] ?>" alt="About" />
-                    <a href="<?php echo $data['appt_link'] ?>" class="lp-btn">book now</a>
+                    <a href="<?php echo $data['appt_link'] ?>" target="_blank" rel="noopener noreferrer" class="lp-btn">book now</a>
                     <a href="tel:<?php echo $data['tracking_line'] ?>"
                         class="lp-btn"><?php echo $data['tracking_line'] ?></a>
                 </div>
@@ -1563,7 +1989,8 @@ function lp($atts) {
                     <?php
 						$args = array(
 							'category_name' => 'Services',
-							'posts_per_page' => '10',
+							'posts_per_page' => '-1',
+		                    'orderby' => 'title',
 							'order' => 'ASC'
 						);
 						$loop = new WP_Query($args);
@@ -1696,7 +2123,7 @@ function lp($atts) {
         <div class="lp-footer-content content-wrapper">
             <img class="lp-footer-logo" src="<?php echo $data['logo'] ?>" alt="logo" />
             <div class="lp-footer-btns-ctn">
-                <a href="<?php echo $data['appt_link'] ?>" class="lp-btn">Book Now</a>
+                <a href="<?php echo $data['appt_link'] ?>" target="_blank" rel="noopener noreferrer" class="lp-btn">Book Now</a>
                 <a href="tel:<?php echo $data['tracking_line'] ?>"
                     class="lp-btn"><?php echo $data['tracking_line'] ?></a>
                 <a target="_blank" href="<?php echo $data['map_link'] ?>" class="lp-btn">View Map</a>
@@ -1868,3 +2295,133 @@ add_filter('wpseo_robots', function($robots) {
     }
     return $robots;
 });
+
+// iVET360 JSON-LD Schema
+function ivet360_schema() {
+?>
+<script type="application/ld+json">
+{
+    "@context": "http://www.schema.org",
+    "@type": "VeterinaryCare",
+    "name": "Exotic Vet Care",
+    "additionalProperty": "https://en.wikipedia.org/wiki/Veterinarian",
+    "additionalType": "http://productontology.org/id/Veterinarian",
+    "sameAs": [
+        "https://www.facebook.com/profile.php?id=61589625481604",
+        "https://www.instagram.com/exoticvetcare/"
+    ],
+    "url": "https://birdsandexotics.com/",
+    "logo": "https://birdsandexotics.com/wp-content/uploads/2026/09/Exotic-Vet-Care-Logo.svg",
+    "image": "https://birdsandexotics.com/wp-content/uploads/2026/09/Exotic-Vet-Care-Logo.svg",
+    "description": "Specialized exotic veterinary care in Charleston, SC with CT imaging, surgery, wellness care, diagnostics, and same-day appointments.",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "814 Johnnie Dodds Blvd A",
+        "addressLocality": "Mt Pleasant",
+        "addressRegion": "SC",
+        "postalCode": "29464",
+        "addressCountry": "USA"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "telephone": "+18432168387"
+    }
+}
+</script>
+
+<!-- CHERRY WIDGET BEGIN -->
+
+<script>
+
+    (function (w, d, s, o, f, js, fjs) {
+
+        w[o] = w[o] || function () {
+
+            (w[o].q = w[o].q || []).push(arguments);
+
+        };
+
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+
+        js.id = o;
+
+        js.src = f;
+
+        js.async = 1;
+
+        fjs.parentNode.insertBefore(js, fjs);
+
+    })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+
+    _hw("init", {
+
+        debug: false,
+
+        variables: {
+
+            slug: "exotic-vet-care",
+
+            name: "Exotic Vet Care",
+
+            images: [36],
+
+            customLogo: "",
+
+            defaultPurchaseAmount: 750,
+
+            customImage: "",
+
+            imageCategory: "veterinary",
+
+            language: "en",
+
+        },
+
+        styles: {
+
+            primaryColor: "#596FD4",
+
+            secondaryColor: "#596FD410",
+
+            fontFamily: "Montserrat",
+
+            headerFontFamily: "Montserrat",
+
+            floatingEstimator: {
+
+                position: "bottom-right",
+
+                offset: {
+
+                    x: "0px",
+
+                    y: "0px"
+
+                },
+
+                zIndex: 9999,
+
+                ctaFontFamily: "Montserrat",
+
+                bodyFontFamily: "Montserrat",
+
+                ctaColor: "#596FD4",
+
+                ctaTextColor: "#FFFFFF"
+
+            }
+
+        }
+
+    }, ["floatingEstimator"]);
+
+</script>
+
+<div id="floatingEstimator"></div>
+
+<!-- CHERRY WIDGET END -->
+<?php
+}
+add_action('wp_head', 'ivet360_schema');
+
