@@ -499,3 +499,36 @@ function testimonialSlider({ debug = false } = {}) {
     ? document.addEventListener("DOMContentLoaded", init)
     : init();
 })();
+
+// ─── Blog sidebar: collapsible filter cards on mobile/tablet ─────────────────
+(function () {
+  const cards = document.querySelectorAll(".blog-filter-card");
+  if (!cards.length) return;
+  const mobile = window.matchMedia("(max-width: 1024px)");
+
+  function setOpen(card, open) {
+    card.classList.toggle("is-collapsed", !open);
+    const btn = card.querySelector(".blog-filter-toggle");
+    if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  // Collapsed by default on small screens, unless the card holds the active filter.
+  function reset() {
+    cards.forEach((card) => {
+      const hasActive = !!card.querySelector(".blog-filter-item.is-active");
+      setOpen(card, !mobile.matches || hasActive);
+    });
+  }
+
+  cards.forEach((card) => {
+    const btn = card.querySelector(".blog-filter-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      if (!mobile.matches) return; // always open on desktop
+      setOpen(card, card.classList.contains("is-collapsed"));
+    });
+  });
+
+  reset();
+  mobile.addEventListener("change", reset);
+})();

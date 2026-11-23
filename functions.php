@@ -22,7 +22,7 @@ function blankslate_load_scripts() {
   wp_enqueue_script( 'gsap', 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js', array(), null, true );
   wp_enqueue_script( 'gsap-splittext', 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js', array( 'gsap' ), null, true );
   wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js', array( 'gsap' ), null, true );
-  wp_enqueue_script( 'custom-scripts', get_template_directory_uri() . '/assets/js/scripts.js' , array( 'jquery', 'gsap', 'gsap-splittext', 'gsap-scrolltrigger' ), '1.0.1', true  );
+  wp_enqueue_script( 'custom-scripts', get_template_directory_uri() . '/assets/js/scripts.js' , array( 'jquery', 'gsap', 'gsap-splittext', 'gsap-scrolltrigger' ), '1.0.2', true  );
   wp_enqueue_style( 'lp-styling', get_stylesheet_directory_uri() . '/lp.css' );
 
 }
@@ -2425,3 +2425,100 @@ function ivet360_schema() {
 }
 add_action('wp_head', 'ivet360_schema');
 
+
+/*--------------------------------------------------------------
+# Blog
+--------------------------------------------------------------*/
+
+/**
+ * Posts in the Blog category (or its sub-categories) use the Blog Post
+ * template unless another template was picked for them.
+ */
+function evc_blog_single_template( $template ) {
+	if ( ! is_singular( 'post' ) ) {
+		return $template;
+	}
+	$picked = get_page_template_slug();
+	if ( $picked && 'single-blog-post.php' !== $picked ) {
+		return $template;
+	}
+	$blog = get_category_by_slug( 'blog' );
+	if ( $blog && ( has_category( $blog->term_id ) || array_intersect( wp_get_post_categories( get_the_ID() ), get_term_children( $blog->term_id, 'category' ) ) ) ) {
+		$blog_template = locate_template( 'single-blog-post.php' );
+		if ( $blog_template ) {
+			return $blog_template;
+		}
+	}
+	return $template;
+}
+add_filter( 'single_template', 'evc_blog_single_template', 20 );
+
+/** URL of the page using the Blog Page template. */
+function evc_blog_page_url() {
+	static $url = null;
+	if ( null === $url ) {
+		$pages = get_pages( array( 'meta_key' => '_wp_page_template', 'meta_value' => 'blog-page.php', 'number' => 1 ) );
+		$url   = $pages ? get_permalink( $pages[0] ) : home_url( '/blog/' );
+	}
+	return $url;
+}
+
+/** Blog page URL filtered to one species tag, e.g. /blog/?animal=snakes */
+function evc_blog_filter_url( $tag_slug ) {
+	return add_query_arg( 'animal', $tag_slug, evc_blog_page_url() );
+}
+
+/** All species posts keyed by slug: name, icon URL, tag slug. */
+function evc_species_list() {
+	static $list = null;
+	if ( null !== $list ) {
+		return $list;
+	}
+	$list = array();
+	foreach ( get_posts( array( 'category_name' => 'species', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC' ) ) as $p ) {
+		$icon_id = function_exists( 'get_field' ) ? get_field( 'species_icon', $p->ID ) : '';
+		$slug    = sanitize_title( $p->post_title );
+		$list[ $slug ] = array(
+			'name' => get_the_title( $p ),
+			'slug' => $slug,
+			'icon' => $icon_id ? wp_get_attachment_image_url( $icon_id, 'full' ) : '',
+		);
+	}
+	return $list;
+}
+
+/**
+ * Species for a blog post's "Explore More" section: the first tag that matches
+ * a species, otherwise a random species (only ones that have an icon).
+ */
+function evc_blog_species_for_post( $post_id ) {
+	$species = evc_species_list();
+	foreach ( (array) get_the_tags( $post_id ) as $tag ) {
+		if ( $tag && isset( $species[ $tag->slug ] ) ) {
+			return $species[ $tag->slug ];
+		}
+	}
+	// random pick: only species with an icon and at least one tagged post, so the link isn't empty
+	$with_icon = array_filter( $species, function ( $s ) {
+		$tag = get_term_by( 'slug', $s['slug'], 'post_tag' );
+		return $s['icon'] && $tag && $tag->count > 0;
+	} );
+	return $with_icon ? $with_icon[ array_rand( $with_icon ) ] : null;
+}
+
+/**
+ * Labels shown as pills on blog cards and the blog post header:
+ * species tags first, then categories (minus "Blog" itself).
+ * $max_tags limits how many tags are shown (0 = all); categories always show.
+ */
+function evc_blog_labels( $post_id = null, $max_tags = 0 ) {
+	$post_id = $post_id ?: get_the_ID();
+	$tags    = get_the_tags( $post_id ) ?: array();
+	if ( $max_tags ) {
+		$tags = array_slice( $tags, 0, $max_tags );
+	}
+	$cats = array_filter( get_the_category( $post_id ), function ( $c ) {
+		return 'blog' !== $c->slug && 'uncategorized' !== $c->slug;
+	} );
+	return array_merge( wp_list_pluck( $tags, 'name' ), wp_list_pluck( $cats, 'name' ) );
+}
